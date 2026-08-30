@@ -2,6 +2,10 @@
 
 **How an AI system actually works, explained twice: once in plain English, once in the words engineers use.**
 
+[![demo](https://github.com/wilsonwu-ai/the-model-is-the-easy-half/actions/workflows/demo.yml/badge.svg)](https://github.com/wilsonwu-ai/the-model-is-the-easy-half/actions/workflows/demo.yml)
+
+That badge is the article's own claim under test. It runs the demo and its 32 tests on a clean machine with nothing installed, and checks the output is identical across runs.
+
 You do not need to know how to code to read this. You do not need to know what a vector is. If you build these systems for a living, the plain half will go quickly, and the boxed vocabulary, the failure notes and the [sources](#sources) are written for you.
 
 There is a working program at the end. One command, no installation, no account, no API key, about one second. It fails three times on purpose, because the failures teach more than the successes do.
