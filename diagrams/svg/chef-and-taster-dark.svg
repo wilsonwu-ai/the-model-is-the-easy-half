@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chef-and-taster-dark-title chef-and-taster-dark-desc">
+      <title id="chef-and-taster-dark-title">Three ways to check an answer</title>
+      <desc id="chef-and-taster-dark-desc">Three arrangements for checking the same generated answer: the model marking its own work, a second model marking it, and a check against the source text, a test that ran, or a number that reconciles, which is the only arrangement whose verdict can come back as a failure.</desc>
+      <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+        <marker id="chef-and-taster-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+        <marker id="chef-and-taster-dark-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+        <marker id="chef-and-taster-dark-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6a95d8"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#2d3142"/>
+
+      <!-- connectors: writer -> checker -->
+      <path d="M 264,280 H 324 Q 332,280 332,272 V 140 Q 332,132 340,132 H 400" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+      <path d="M 264,312 H 400" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+      <path d="M 264,344 H 324 Q 332,344 332,352 V 484 Q 332,492 340,492 H 400" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+
+
+      <!-- connectors: checker -> verdict -->
+      <path d="M 760,132 H 880" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+      <path d="M 760,312 H 880" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+      <path d="M 760,492 H 880" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#chef-and-taster-dark-arrow)"/>
+
+
+      <!-- arrow labels: mask sits 8px clear of the stroke -->
+      <rect x="788" y="112" width="64" height="12" rx="2" fill="#2d3142"/>
+      <text x="820" y="120" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">OPINION</text>
+      <rect x="788" y="292" width="64" height="12" rx="2" fill="#2d3142"/>
+      <text x="820" y="300" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">OPINION</text>
+      <rect x="788" y="472" width="64" height="12" rx="2" fill="#2d3142"/>
+      <text x="820" y="480" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">EVIDENCE</text>
+
+
+      <!-- writer: one origin shared by all three rows -->
+      <rect x="64" y="252" width="200" height="120" rx="6" fill="#2d3142"/>
+      <rect x="64" y="252" width="200" height="120" rx="6" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="164" y="304" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Model writes the answer</text>
+      <text x="164" y="328" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">generation</text>
+
+
+      <!-- row A -->
+      <text x="400" y="72" fill="#8e98ac" font-size="8" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">ROW A · THE WRITER CHECKS ITS OWN WORK</text>
+      <rect x="400" y="88" width="360" height="88" rx="6" fill="#2d3142"/>
+      <rect x="400" y="88" width="360" height="88" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="580" y="124" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The same model marks it</text>
+      <text x="580" y="148" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">self-critique</text>
+      <rect x="880" y="96" width="320" height="72" rx="6" fill="#2d3142"/>
+      <rect x="880" y="96" width="320" height="72" rx="6" fill="rgba(245,245,245,0.05)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+      <text x="1040" y="124" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">PASS</text>
+      <text x="1040" y="148" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">shares every blind spot</text>
+
+
+      <!-- row B -->
+      <text x="400" y="252" fill="#8e98ac" font-size="8" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">ROW B · A SECOND OPINION</text>
+      <rect x="400" y="268" width="360" height="88" rx="6" fill="#2d3142"/>
+      <rect x="400" y="268" width="360" height="88" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="580" y="304" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">A different model marks it</text>
+      <text x="580" y="328" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">llm-as-judge</text>
+      <rect x="880" y="276" width="320" height="72" rx="6" fill="#2d3142"/>
+      <rect x="880" y="276" width="320" height="72" rx="6" fill="rgba(245,245,245,0.05)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+      <text x="1040" y="304" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">PASS</text>
+      <text x="1040" y="328" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">better; still an opinion</text>
+
+
+      <!-- row C -->
+      <text x="400" y="432" fill="#8e98ac" font-size="8" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">ROW C · SOMETHING THAT CANNOT ARGUE BACK</text>
+      <rect x="400" y="448" width="360" height="88" rx="6" fill="#2d3142"/>
+      <rect x="400" y="448" width="360" height="88" rx="6" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1.2"/>
+      <text x="580" y="476" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Checked against the source text,</text>
+      <text x="580" y="492" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">a test that ran, a number that reconciles</text>
+      <text x="580" y="516" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">ground truth · executable check</text>
+      <rect x="880" y="456" width="320" height="72" rx="6" fill="#2d3142"/>
+      <rect x="880" y="456" width="320" height="72" rx="6" fill="rgba(245,245,245,0.05)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+      <text x="1040" y="484" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">PASS / FAIL</text>
+      <text x="1040" y="508" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">this one can say no</text>
+
+
+      <!-- editorial callout -->
+      <text x="64" y="568" fill="#f5f5f5" font-size="16" font-style="italic" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" text-anchor="start">A checker that can only agree is not a check.</text>
+      <text x="64" y="592" fill="#f5f5f5" font-size="16" font-style="italic" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" text-anchor="start">It is a second opinion wearing a lab coat.</text>
+      <path d="M 392,560 Q 436,548 480,536" fill="none" stroke="rgba(245,245,245,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
+      <circle cx="480" cy="536" r="2" fill="#f5f5f5"/>
+
+
+      <!-- legend: horizontal strip, below a hairline -->
+      <line x1="40" y1="656" x2="1240" y2="656" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <text x="40" y="676" fill="#bfc0c0" font-size="8" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">LEGEND</text>
+      <rect x="140" y="668" width="16" height="12" rx="2" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="164" y="676" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">GENERATED</text>
+      <rect x="360" y="668" width="16" height="12" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="384" y="676" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">JUDGED</text>
+      <rect x="580" y="668" width="16" height="12" rx="2" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1.2"/>
+      <text x="604" y="676" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="start" letter-spacing="0.14em">GROUND TRUTH</text>
+    </svg>

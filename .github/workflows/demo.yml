@@ -1,0 +1,39 @@
+name: demo
+
+# The article claims the demo runs anywhere with no installation, no account and
+# no API key. This job is the check on that claim: a clean runner, the Python
+# that ships with it, no pip install step anywhere, and no network access needed.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  runs-with-nothing-installed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show the interpreter we are using
+        run: python3 --version
+
+      - name: Assert no third-party imports
+        run: |
+          # If someone adds a dependency, the "no installation" claim in the
+          # README stops being true. Fail loudly rather than quietly.
+          ! grep -nE '^\s*(import|from)\s+(numpy|scipy|torch|requests|openai|anthropic|sentence_transformers|sklearn)' demo/tiny_rag.py
+
+      - name: Run the demo
+        run: python3 demo/tiny_rag.py
+
+      - name: Run the tests
+        run: python3 -m unittest discover -s demo -v
+
+      - name: Assert the output is deterministic across hash seeds
+        run: |
+          # tiny_rag hashes tokens into buckets. Python randomises its built-in
+          # hash() per process, so a demo that used it would print different
+          # numbers on every run and the README transcript would be a lie.
+          PYTHONHASHSEED=0 python3 demo/tiny_rag.py > /tmp/a.txt
+          PYTHONHASHSEED=1 python3 demo/tiny_rag.py > /tmp/b.txt
+          diff /tmp/a.txt /tmp/b.txt && echo "deterministic"

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asking nicely is not a gate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #2d3142;
+      --color-ink:     #f5f5f5;
+      --color-muted:   #bfc0c0;
+      --color-accent:  #f08a59;
+      --font-sans:     'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-serif:    'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-mono:     'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .frame { max-width: 1200px; width: 100%; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Safety · Structure beats instruction</p>
+    <h1>Asking nicely is not a gate</h1>
+
+    <svg viewBox="0 0 1280 780" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="gate-is-topology-dark-title gate-is-topology-dark-desc">
+      <title id="gate-is-topology-dark-title">Asking nicely is not a gate</title>
+      <desc id="gate-is-topology-dark-desc">Two traces of the same task, an AI agent that has drafted a customer email. In the first, a prompt instruction to ask a human is passed through and the send step is still reached. In the second, the agent can only write the draft to a file, a trust boundary stops it there, and the send step is never reached because a person holds the only inbound path to it.</desc>
+      <defs>
+        <marker id="gate-is-topology-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+        <marker id="gate-is-topology-dark-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+        <marker id="gate-is-topology-dark-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6a95d8"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#2d3142"/>
+
+      <!-- ============ COLUMN HEADERS ============ -->
+      <text x="208" y="48" fill="#8e98ac" font-size="8" font-weight="500" letter-spacing="0.18em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">TRACE A</text>
+      <text x="208" y="72" fill="#f5f5f5" font-size="16" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Instructed to stop</text>
+      <line x1="64" y1="88" x2="352" y2="88" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+
+      <text x="880" y="48" fill="#8e98ac" font-size="8" font-weight="500" letter-spacing="0.18em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">TRACE B</text>
+      <text x="880" y="72" fill="#f5f5f5" font-size="16" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Unable to proceed</text>
+      <line x1="736" y1="88" x2="1024" y2="88" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+
+      <!-- ============ TRUST BOUNDARY (zone, drawn before connectors) ============ -->
+      <rect x="704" y="424" width="536" height="72" rx="8"
+            fill="rgba(240,138,89,0.06)" stroke="rgba(240,138,89,0.50)" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="724" y="452" fill="#f08a59" font-size="8" font-weight="500" letter-spacing="0.14em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">TRUST BOUNDARY</text>
+      <text x="724" y="476" fill="#f5f5f5" font-size="12" font-weight="500"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">The agent&#8217;s tools stop here</text>
+
+      <!-- ============ TRACE DIVIDER (broken for the divergence label) ============ -->
+      <line x1="528" y1="56" x2="528" y2="324" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <line x1="528" y1="372" x2="528" y2="620" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+
+      <!-- ============ CONNECTORS (drawn before boxes) ============ -->
+      <!-- Trace A -->
+      <line x1="208" y1="168" x2="208" y2="208" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+      <line x1="208" y1="264" x2="208" y2="304" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+      <line x1="208" y1="376" x2="208" y2="536" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+
+      <!-- Trace B -->
+      <line x1="880" y1="168" x2="880" y2="208" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+      <line x1="880" y1="264" x2="880" y2="304" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+      <!-- blocked path: no arrowhead, terminates in a stop bar short of the boundary -->
+      <line x1="880" y1="376" x2="880" y2="416" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="856" y1="416" x2="904" y2="416" stroke="#bfc0c0" stroke-width="1.2"/>
+      <!-- the only inbound edge to Send -->
+      <line x1="1096" y1="572" x2="1024" y2="572" stroke="#bfc0c0" stroke-width="1" marker-end="url(#gate-is-topology-dark-arrow)"/>
+
+      <!-- ============ TRACE A NODES ============ -->
+      <!-- Agent -->
+      <rect x="64" y="112" width="288" height="56" rx="20" fill="#2d3142"/>
+      <rect x="64" y="112" width="288" height="56" rx="20" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="208" y="136" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The AI agent</text>
+      <text x="208" y="152" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">agent</text>
+
+      <!-- Draft -->
+      <rect x="64" y="208" width="288" height="56" rx="6" fill="#2d3142"/>
+      <rect x="64" y="208" width="288" height="56" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="208" y="232" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Draft the email</text>
+      <text x="208" y="248" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">generate</text>
+
+      <!-- Decision -->
+      <polygon points="208,304 328,340 208,376 88,340" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="208" y="336" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Prompt says:</text>
+      <text x="208" y="352" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">ask a human first</text>
+
+      <!-- Send (reached) -->
+      <rect x="64" y="536" width="288" height="72" rx="6" fill="#2d3142"/>
+      <rect x="64" y="536" width="288" height="72" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <rect x="76" y="548" width="64" height="16" rx="4" fill="transparent" stroke="rgba(245,245,245,0.40)" stroke-width="0.8"/>
+      <text x="108" y="560" fill="#f5f5f5" font-size="8" font-weight="500" letter-spacing="0.08em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">REACHED</text>
+      <text x="208" y="584" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Send the email</text>
+      <text x="208" y="600" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">send()</text>
+
+      <!-- ============ TRACE B NODES ============ -->
+      <!-- Agent -->
+      <rect x="736" y="112" width="288" height="56" rx="20" fill="#2d3142"/>
+      <rect x="736" y="112" width="288" height="56" rx="20" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="880" y="136" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The AI agent</text>
+      <text x="880" y="152" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">agent</text>
+
+      <!-- Draft -->
+      <rect x="736" y="208" width="288" height="56" rx="6" fill="#2d3142"/>
+      <rect x="736" y="208" width="288" height="56" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="880" y="232" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Draft the email</text>
+      <text x="880" y="248" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">generate</text>
+
+      <!-- Write to file -->
+      <rect x="736" y="304" width="288" height="72" rx="6" fill="#2d3142"/>
+      <rect x="736" y="304" width="288" height="72" rx="6" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+      <text x="880" y="336" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Write the draft to a file</text>
+      <text x="880" y="352" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">write_file()</text>
+
+      <!-- Send (not reached) · FOCAL -->
+      <rect x="736" y="536" width="288" height="72" rx="6" fill="#2d3142"/>
+      <rect x="736" y="536" width="288" height="72" rx="6" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1" stroke-dasharray="4,4"/>
+      <rect x="748" y="548" width="80" height="16" rx="4" fill="transparent" stroke="rgba(240,138,89,0.50)" stroke-width="0.8"/>
+      <text x="788" y="560" fill="#f08a59" font-size="8" font-weight="500" letter-spacing="0.08em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">NOT REACHED</text>
+      <text x="880" y="584" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Send the email</text>
+      <text x="880" y="600" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">send()</text>
+
+      <!-- Human -->
+      <rect x="1096" y="536" width="144" height="72" rx="6" fill="#2d3142"/>
+      <rect x="1096" y="536" width="144" height="72" rx="6" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="1168" y="572" fill="#f5f5f5" font-size="12" font-weight="600"
+            font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">A person</text>
+      <text x="1168" y="588" fill="#bfc0c0" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">human review</text>
+
+      <!-- ============ STATUS CHIP + RULE NOTE (trace A decision) ============ -->
+      <rect x="352" y="332" width="96" height="16" rx="4" fill="#2d3142" stroke="rgba(245,245,245,0.30)" stroke-width="0.8"/>
+      <text x="400" y="344" fill="#bfc0c0" font-size="8" font-weight="500" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">PASSED THROUGH</text>
+      <text x="352" y="368" fill="#8e98ac" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">soft constraint</text>
+
+      <!-- ============ FIRST DIVERGENCE MARKER ============ -->
+      <rect x="464" y="336" width="128" height="24" rx="4" fill="#2d3142"/>
+      <text x="528" y="352" fill="#bfc0c0" font-size="8" font-weight="500" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">FIRST DIVERGENCE</text>
+
+      <!-- ============ ARROW LABELS ============ -->
+      <rect x="224" y="440" width="128" height="16" rx="2" fill="#2d3142"/>
+      <text x="288" y="452" fill="#8e98ac" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">PROCEEDS ANYWAY</text>
+
+      <rect x="896" y="384" width="112" height="16" rx="2" fill="#2d3142"/>
+      <text x="952" y="396" fill="#8e98ac" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">NO SEND TOOL</text>
+
+      <rect x="1032" y="548" width="56" height="16" rx="2" fill="#2d3142"/>
+      <text x="1060" y="560" fill="#8e98ac" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">SENDS</text>
+
+      <!-- ============ TRACE NOTES ============ -->
+      <text x="208" y="636" fill="#8e98ac" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">the path to Send still exists</text>
+      <text x="880" y="636" fill="#8e98ac" font-size="8"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">the agent has no edge to Send at all</text>
+
+      <!-- ============ EDITORIAL CALLOUT ============ -->
+      <text x="640" y="680" fill="#f5f5f5" font-size="16" font-style="italic"
+            font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" text-anchor="middle">The difference is not how firmly you asked. It is whether the arrow exists.</text>
+
+      <!-- ============ LEGEND ============ -->
+      <line x1="40" y1="708" x2="1240" y2="708" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <text x="40" y="724" fill="#bfc0c0" font-size="8" font-weight="500" letter-spacing="0.14em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">LEGEND</text>
+
+      <rect x="144" y="712" width="16" height="16" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="168" y="724" fill="#bfc0c0" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Reachable step</text>
+
+      <rect x="320" y="712" width="16" height="16" rx="4" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="344" y="724" fill="#bfc0c0" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Not reached</text>
+
+      <line x1="480" y1="720" x2="504" y2="720" stroke="rgba(240,138,89,0.50)" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="512" y="724" fill="#bfc0c0" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Trust boundary</text>
+
+      <rect x="664" y="712" width="16" height="16" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="688" y="724" fill="#bfc0c0" font-size="8" letter-spacing="0.06em"
+            font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Human action</text>
+    </svg>
+  </div>
+</body>
+</html>
