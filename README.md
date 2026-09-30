@@ -77,7 +77,7 @@ Before anyone asks anything, your documents have to become searchable. This runs
 
 A PDF is not text. It is a description of where ink goes on a page. A wiki page is text wrapped in markup. A scanned contract is a picture. Step one throws all of that away and keeps the words.
 
-This step gets one line in most explanations of AI systems, usually a library import. **In production it is the largest single cause of silently bad answers**, and it deserves far more of your attention than the clever parts downstream.
+This step gets one line in most explanations of AI systems, usually a library import. **In production it is where many silently bad answers start, and it is rarely the first place anyone looks**, and it deserves far more of your attention than the clever parts downstream.
 
 Here is why. A two-column page read straight across interleaves two unrelated sentences. A heading gets separated from the section it governs. A footer is spliced into the middle of a paragraph. Worst of all, a table is flattened: the rows and columns are a two-dimensional structure, and once it has been squeezed into one line of text, the relationship between "Q3" and "$1.2m" is simply gone.
 
@@ -89,9 +89,9 @@ If you take one practical thing from this article: **before tuning anything else
 
 You cannot search a 500-page manual as one object, and you cannot paste it into a question. So it is cut into pieces of a few paragraphs. The pieces overlap slightly, so a sentence on a boundary is not sliced in half and lost.
 
-**There is no standard size,** whatever you have read. The figures repeated everywhere (512 tokens, 50 tokens of overlap) are library defaults, not findings. A *token* is the unit these systems count text in: roughly three quarters of a word, so 512 tokens is something like two or three paragraphs. They are traceable to specific lines of library code: LangChain ships a 50-token overlap default in one of its splitters (its base splitter uses 200), and LlamaIndex sets a 1,024-token default chunk size. Defaults are not evidence.
+**There is no standard size,** whatever you have read. The figures repeated everywhere (512 tokens, 50 tokens of overlap) are conventions, not findings, and the libraries do not even agree on them. A *token* is the unit these systems count text in: roughly three quarters of a word in English, so 512 tokens is a few paragraphs. Read the code and the defaults are all over the place: LangChain's base splitter uses 4,000 *characters* with 200 of overlap, its sentence-transformers splitter overlaps by 50 tokens, and LlamaIndex defaults to 1,024 tokens with 20 of overlap. Defaults are not evidence.
 
-The tradeoff is real in both directions. Chunks too small lose the context that made them meaningful. Chunks too big dilute the meaning, so they match for the wrong reasons. One published evaluation found smaller chunks with no overlap beat the larger, heavily-overlapped default on both recall (how much of the right material you found) and precision (how little junk came with it), which is the opposite of what most tutorials assume. That is one measurement on one corpus (the word for the whole pile of documents your system is allowed to answer from), which is exactly the point: **the number is a property of your documents, and the only way to know it is to build a small set of 50 to 100 real questions and measure.** Tuning it by argument is how everyone does it and it does not work.
+The tradeoff is real in both directions. Chunks too small lose the context that made them meaningful. Chunks too big dilute the meaning, so they match for the wrong reasons. One published evaluation, by the vector-database company Chroma, found that small 200-token chunks with no overlap matched OpenAI's file-search default (800 tokens with 400 of overlap) on recall (how much of the right material you found) and beat it several times over on precision (how little junk came with it), which is the opposite of what most tutorials assume. That is one benchmark on five small corpora (a corpus is the whole pile of documents your system is allowed to answer from), which is exactly the point: **the number is a property of your documents, and the only way to know it is to build a small set of 50 to 100 real questions and measure.** Tuning it by argument is how everyone does it and it does not work.
 
 ### Then label each passage by meaning, and put it on a shelf
 
@@ -110,7 +110,7 @@ That single meeting point is also the most dangerous thing in the diagram:
 
 > **Both halves must turn text into numbers using the same model.** Upgrade the one that labels your documents, forget the one that labels incoming questions, and the two are no longer speaking the same language.
 
-Nothing crashes. There is no error. Here is the mechanism, and it is worth understanding precisely: the comparison step is arithmetic on two lists of numbers, and **it will compare any two lists of the same length.** It does not know, and cannot know, that they came from different models. It returns a number. The number is meaningless. Every answer quietly gets worse, forever, until somebody notices months later.
+Nothing crashes, as long as the new model's lists happen to be the same length as the old one's. (If they are not, you get an error, which is the lucky case.) Here is the mechanism, and it is worth understanding precisely: the comparison step is arithmetic on two lists of numbers, and **it will compare any two lists of the same length.** It does not know, and cannot know, that they came from different models. It returns a number. The number is meaningless. Every answer quietly gets worse, forever, until somebody notices months later.
 
 This is what "silent failure" means, and it is the theme of the whole article. **The dangerous failures in AI systems are the ones that still return a plausible answer.**
 
@@ -153,7 +153,7 @@ So instead of storing the words, you store a description of the meaning: a long 
 
 **Four things people get wrong here.**
 
-**The number of numbers is not fixed.** You will see "768 dimensions" written as though it were a constant. It is not. 768 is the width of BERT-base and the open sentence encoders that popularized it, which is why it reads as canonical. The major commercial APIs default elsewhere: I checked six current model families and their defaults were 384, 768, 1024, 1536 and 3072 depending on the vendor. Several also let you *request* a shorter list, because they are trained so that the first part of the vector is still useful on its own. So the length is set by the model you picked and, increasingly, by what you asked for. **If a source states a dimension without naming a model, it is repeating rather than reporting.**
+**The number of numbers is not fixed.** You will see "768 dimensions" written as though it were a constant. It is not. 768 is the width of BERT-base and the open sentence encoders that popularized it, which is why it reads as canonical. Current models default elsewhere. OpenAI's text-embedding-3-small returns 1,536 numbers and text-embedding-3-large returns 3,072; Voyage's current text models default to 1,024; the widely used open MiniLM encoder (all-MiniLM-L6-v2) returns 384. Several also let you *request* a shorter list, because they are trained so that the first part of the vector is still useful on its own. So the length is set by the model you picked and, increasingly, by what you asked for. **If a source states a dimension without naming a model, it is repeating rather than reporting.**
 
 **Nothing is "physically grouped" anywhere.** It is arithmetic on lists. And the grouping is not a free gift of high-dimensional space, it is a trained behavior: plain BERT is famously unsuitable for similarity search, which is why Sentence-BERT had to exist.
 
@@ -186,7 +186,7 @@ Worth knowing: this is also why adding a search index changes your results. The 
 
 **3. Re-check the shortlist properly.** Step 2 is fast and slightly careless: it compared the question and the passage separately, having never seen them side by side. Step 3 takes the survivors and scores them again with a slower model that reads the question and the passage *together*, which is a much better judge and far too expensive to run on everything.
 
-How much slower is worth knowing, because it is often understated. Published throughput figures for common rerankers on a datacenter GPU work out to roughly 10 milliseconds for the smallest distilled model over 100 passages, and roughly 300 milliseconds for a base-sized one. Tens to hundreds of milliseconds, not "a few". On a CPU, or through a hosted API, more. This is a real budget line, and it is the step that gets quietly dropped under load.
+How much slower is worth knowing, because it is often understated. Published throughput figures for common rerankers on a datacenter GPU (a V100) work out to roughly 10 milliseconds for the smallest distilled model over 100 passages, and roughly 300 milliseconds for a base-sized one. Tens to hundreds of milliseconds, not "a few". On a CPU, or through a hosted API, more. This is a real budget line, and it is the step that gets quietly dropped under load.
 
 **4. Paste them in.** The passages go above the question with instructions: answer from these and nothing else, cite which one, and if the answer is not here, say so.
 
@@ -200,7 +200,7 @@ How much slower is worth knowing, because it is often understated. Published thr
 
 **Two things about the numbers you will see quoted.**
 
-*"Sub-300 milliseconds" is measuring the wrong thing.* That figure is reasonable for the retrieval half. It is not attainable for most paths that include a language model writing prose, because generation is the dominant term rather than a rounding error on top of retrieval. One published end-to-end breakdown puts it at roughly three quarters to nine tenths of total query latency (latency being the delay between asking and getting an answer). If you see a sub-300ms figure quoted, ask what was in the timer, and time retrieval, reranking and generation separately on your own traffic before believing any split, including that one.
+*"Sub-300 milliseconds" is measuring the wrong thing.* That figure is reasonable for the retrieval half. It is not attainable for most paths that include a language model writing prose, because generation is the dominant term rather than a rounding error on top of retrieval. One published end-to-end breakdown puts generation at 75% to 91% of total query latency in its text pipeline, depending on the model (latency being the delay between asking and getting an answer). If you see a sub-300ms figure quoted, ask what was in the timer, and time retrieval, reranking and generation separately on your own traffic before believing any split, including that one.
 
 *p95 does not mean "usually fast".* It means one request in twenty is worse than that, with no promise about how much worse. And it is 5% of *requests*, not users. Once one user action fans out across several stages, those diverge sharply: the classic illustration is that if a request touches 100 services each with a one-in-a-hundred slow response, **63% of user requests are slow.** A retrieval pipeline is itself a fan-out.
 
@@ -234,7 +234,7 @@ Nineteen digits went in. A different nineteen-digit number came out. No warning.
 
 **Money stored as a fraction drifts.** Computers store fractions in binary, and `0.1` has no exact binary form, the way `1/3` has no exact decimal form. The famous example is that `0.1 + 0.2` gives `0.30000000000000004`. The example that actually costs money is smaller and nastier: `4.35 * 100` evaluates to `434.99999999999994`, so the ordinary "convert dollars to cents" step truncates it to `434`, and a $4.35 line item bills as $4.34. Money is counted in whole cents, as integers, or in a decimal type built for it. Never as a fraction.
 
-**There are no dates.** JSON has four basic kinds of value (text, number, true/false, and nothing-at-all) and a date is not one of them. Every timestamp you have passed between two services was a string both sides agreed to read the same way. When one side changes its mind about time zones, nothing breaks loudly.
+**There are no dates.** JSON has four basic kinds of single value (text, number, true/false, and nothing-at-all), plus lists and groupings of those, and a date is none of them. Every timestamp you have passed between two services was a string both sides agreed to read the same way. When one side changes its mind about time zones, nothing breaks loudly.
 
 **And the worst one is not about writing at all.** A service writes a record successfully, then times out before it can say so. The write happened. The confirmation did not. The caller retries, or gives up, or marks it failed, and now two systems disagree about reality. The encoding was perfect. The state is wrong.
 
@@ -254,7 +254,7 @@ This has been measured, and the result is worse than "no help". In a controlled 
 
 **The second instinct is to ask a different model.** This is genuinely better, and it is how much evaluation works. But be honest about what it is: a second opinion, not a measurement. Models used as judges have documented, reproducible biases:
 
-- **Position bias.** In MT-Bench, the study that popularized the method, swapping which answer came first changed the verdict most of the time. Consistency was 23.8% for Claude-v1, 46.2% for GPT-3.5 and 65.0% for GPT-4. Naming them matters: the worst number there belongs to a Claude model, and rounding that off would be exactly the convenient omission this article is about.
+- **Position bias.** In MT-Bench, the study that popularized the method, swapping which answer came first changed the verdict more often than not for two of the three judges. Consistency (the same verdict in both orders) was 23.8% for Claude-v1, 46.2% for GPT-3.5 and 65.0% for GPT-4, so even the best of them flipped about a third of the time. Naming them matters: the worst number there belongs to a Claude model, and rounding that off would be exactly the convenient omission this article is about.
 - **Verbosity bias.** Padding an answer with rephrased duplicates that add no information fooled Claude-v1 and GPT-3.5 91.3% of the time. GPT-4 fell for it 8.7% of the time. So this is a bias to measure on your judge, not a law about judges.
 - **Self-preference.** Judges appear to score their own output higher: in that same study GPT-4 by 10 points of win rate, Claude-v1 by 25. Do not lean hard on it, because the authors say plainly that their own data could not establish the effect. Separate later work found models can recognize their own writing, which is the mechanism the bias would need.
 
@@ -322,7 +322,7 @@ The version that works removes the capability rather than discouraging its use. 
 
 Two more that are less obvious and worth knowing.
 
-**Check-then-act is a race.** If the system verifies you may see a record and acts on it a moment later, and the record can change in between, the check was performed on something other than the thing acted upon. The permission was real and it was still wrong. This is an old, named bug class, and it has now been measured specifically in AI agents: one study found 12% of executed agent runs carried it.
+**Check-then-act is a race.** If the system verifies you may see a record and acts on it a moment later, and the record can change in between, the check was performed on something other than the thing acted upon. The permission was real and it was still wrong. This is an old, named bug class, and it has now been measured specifically in AI agents: one study found it in 12% of the agent runs it executed, before any countermeasures.
 
 **Permission filtering breaks search in a way nobody warns you about.** Filter the index by who is allowed to see what *before* searching and you damage the structure the search relies on, and recall drops. Filter *after* searching and the user silently gets two results instead of five, with no error anywhere. Enterprise diagrams draw this as a box. It is not a box.
 
@@ -334,7 +334,7 @@ Two more that are less obvious and worth knowing.
 
 Everything so far is the AI-specific part. It sits on top of ordinary software, and if that is weak, none of it survives contact with real users.
 
-Andrew Ng's framing is the clearest available, and worth taking seriously precisely because it is unglamorous. To be exact about the attribution, because it is easy to get wrong: his skills map names **four** top-level skills, and *software engineering fundamentals* is one of them. The five headings below are the list he gives inside that one branch, in a follow-up letter devoted to it. The headings are his. The failures attached to each are mine.
+Andrew Ng's framing is the clearest available, and worth taking seriously precisely because it is unglamorous. To be exact about the attribution, because it is easy to get wrong: his skills map names **four** top-level skills, and *software engineering fundamentals* is one of them. The five topics below are the list he gives inside that one branch, in a follow-up letter devoted to it: building full-stack applications, managing data, designing system architectures, making systems secure and reliable, and scaling and operating in production. The topics are his. The plain-English headings, the order, and the failures attached to each are mine.
 
 Here is each one with the specific thing that breaks when it is missing. Not a category. The actual incident.
 
@@ -357,7 +357,7 @@ Here is each one with the specific thing that breaks when it is missing. Not a c
 
 **On what changed with coding agents.** None of this became less important. Writing the code got cheap, so the value moved to deciding what to build and noticing when what came back is subtly wrong. An agent will happily pick a tradeoff you did not know existed, between speed and consistency, or cost and reliability, and the code it hands back looks the same either way. Knowing the tradeoffs exist is the job now. Typing is not.
 
-One popular claim deserves a correction, because it is repeated confidently and the primary source says the opposite. You will read that the essential new skill is orchestrating many coding agents in parallel. Anthropic's own published engineering write-up on multi-agent systems measures a large win **on research**, where the work genuinely splits into independent directions, and states plainly that most coding tasks contain fewer truly parallel pieces and that models are not yet good at coordinating each other in real time. It also puts a price on it: agents use around 4x the tokens of a chat, and multi-agent systems around 15x. **Parallelism is a tool with a measured cost and a measured domain, not a general skill upgrade.**
+One popular claim deserves a correction, because it is repeated confidently and the primary source cuts against it. You will read that the essential new skill is orchestrating many coding agents in parallel. Anthropic's own published engineering write-up on multi-agent systems measures a large win **on research**, where the work genuinely splits into independent directions, and states plainly that most coding tasks contain fewer truly parallel pieces and that models are not yet good at coordinating each other in real time. It also puts a price on it: agents use around 4x the tokens of a chat, and multi-agent systems around 15x. **Parallelism is a tool with a measured cost and a measured domain, not a general skill upgrade.**
 
 ---
 
@@ -388,7 +388,7 @@ Worth saying plainly, because articles about retrieval rarely do.
 
 The example that opens almost every explanation of this subject, including the one that prompted this article, is: *"ask an LLM (a large language model, the cook) about your company's Q3 revenue and it cannot answer."* True. But **retrieval over prose is the wrong fix for that question.**
 
-Q3 revenue lives in a table, in a database, and the right system computes it: turn the question into a database query, run it, return the number. What you get instead from a similarity search over documents is the paragraph that most *resembles* a question about revenue, which is not the same thing as the revenue, and may be last year's.
+Q3 revenue lives in a table, in a database, and the right system computes it: turn the question into a database query, run it, return the number, and show the query so a person can check it. What you get instead from a similarity search over documents is the paragraph that most *resembles* a question about revenue, which is not the same thing as the revenue, and may be last year's.
 
 The honest decision rule is simple:
 
@@ -399,7 +399,7 @@ The honest decision rule is simple:
 | Small enough to simply show the model in full | Just show it in full, and skip all of this |
 | Not written down anywhere | Nothing. Go and write it down first |
 
-That last row is not a joke. A meaningful share of retrieval projects are attempts to extract knowledge that was never recorded. No architecture recovers it.
+That last row is not a joke. In my experience, a meaningful share of retrieval projects are attempts to extract knowledge that was never recorded. No architecture recovers it.
 
 ---
 
@@ -490,7 +490,7 @@ The first inverts a policy and is caught, but only because the word "not" was de
 
 The second one passes, and it has to. It swaps the two limits, so anyone acting on it overspends by a factor of ten. It passes because this is a *set* test: word order, repetition, and which number belongs to which noun are all thrown away before it runs, and every individual word of that sentence really is in the cited chunk.
 
-So the check catches invented **facts** and misses invented **relationships**. That is a precise, demonstrable limit, printed by the program itself rather than asserted in prose.
+So the check catches invented **facts** and misses invented **relationships**, along with any negation carried by a word it throws away (the tests pin one: "with" standing in for "without"). Those are demonstrable limits, printed by the program and pinned by its tests rather than asserted in prose.
 
 **Which is exactly the point.** It is a correctness filter, not a security boundary. Anyone who can see the retrieved passages can write a passing falsehood out of their vocabulary in a minute. A real system puts a trained entailment model in this slot and inherits that model's error rate instead. What makes even this version worth having is that it **fails closed**: what it cannot confirm is rejected, never waved through. A filter that waves through what it does not understand is decorative.
 
@@ -507,7 +507,7 @@ Thirty-two tests, all passing, and several of them are unusual on purpose:
 - one asserts that the reranker's reordering is real rather than narrated, so a future edit cannot flatten it into a no-op while the demo still prints "ranks 1 and 2 swapped"
 - one checks the printed narration is actually true of the corpus, because a teaching transcript that drifts from its own data is worse than no transcript
 
-Section 5 argues that the way to find out whether tests are any good is to break the code deliberately and see whether they notice. That was done here rather than recommended: an independent reviewer mutated the source in nine ways (reranker turned into a no-op, verifier made to fail open, the stable hash swapped for the randomized one, normalization dropped, ranking reversed, overlap removed) and **every mutant was caught.** If the suite had been decorative, that is where it would have shown.
+Section 5 argues that the way to find out whether tests are any good is to break the code deliberately and see whether they notice. That was done here rather than recommended: one of the reviewers described in section 11 mutated the source in nine ways (among them: reranker turned into a no-op, verifier made to fail open, the stable hash swapped for the randomized one, normalization dropped, ranking reversed, overlap removed) and **every mutant was caught.** If the suite had been decorative, that is where it would have shown.
 
 There is also [`demo/real_rag.py`](demo/real_rag.py), which shows the same six steps with real components. It does not run as written, and is not meant to: you supply the embedding model and the store, and the generation call needs a key. Its purpose is to show that swapping the fake parts for real ones changes almost nothing about the shape of the pipeline. The plumbing is the same, which is the argument of this whole article.
 
@@ -541,7 +541,7 @@ Grouped by what each one actually supports, so you can check the specific claim 
 
 **The source material this article was built from**
 
-- Andrew Ng, [The AI Engineering Skills Map In Detail: Software Engineering Fundamentals](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map-in-detail-software-engineering-fundamentals) (DeepLearning.AI, The Batch, 28 August 2026). The five headings in section 7, verbatim, and the line "the AI doesn't know what it doesn't know", which is his.
+- Andrew Ng, [The AI Engineering Skills Map In Detail: Software Engineering Fundamentals](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map-in-detail-software-engineering-fundamentals) (DeepLearning.AI, The Batch, 28 August 2026). The five topics in section 7 (his wording is quoted there; the headings are paraphrased), and the line "the AI doesn't know what it doesn't know", which is his.
 - Andrew Ng, [The AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map/) (14 August 2026). The parent map, which names four top-level skills. Software engineering fundamentals is one of them; the letter above is the follow-up that expands it.
 - [LangChain text splitters](https://github.com/langchain-ai/langchain/tree/master/libs/text-splitters) and [LlamaIndex](https://github.com/run-llama/llama_index). The chunk-size and overlap defaults quoted in section 1, read off the code rather than a blog post.
 - The RAG architecture walkthrough, the serialization thread, and the reply threads on agentic coding that prompted sections 4, 5 and 6, all originally posted on X in August 2026.
@@ -556,11 +556,12 @@ Grouped by what each one actually supports, so you can check the specific claim 
 - Sciavolino, Zhong, Lee & Chen, [Simple Entity-Centric Questions Challenge Dense Retrievers](https://arxiv.org/abs/2109.08535) (EMNLP 2021). Dense retrieval failing on exact entities.
 - Thakur et al., [BEIR](https://arxiv.org/abs/2104.08663). Zero-shot retrieval across domains, and why one benchmark number does not transfer.
 - Anthropic, [Contextual Retrieval](https://www.anthropic.com/engineering/contextual-retrieval). The 5.7% to 3.7% to 2.9% to 1.9% failure-rate sequence in section 2. Note these are relative reductions on an already low base.
-- Anthropic, [Embeddings](https://platform.claude.com/docs/en/build-with-claude/embeddings). "Anthropic does not offer its own embedding model", verbatim, plus the recommendation to evaluate vendors yourself.
-- [pgvector](https://github.com/pgvector/pgvector). That you do not need a dedicated vector database, the six distance operators, and the warning that results change once an approximate index is added.
+- Anthropic, [Embeddings](https://platform.claude.com/docs/en/build-with-claude/embeddings). "Anthropic does not offer its own embedding model", verbatim, plus the recommendation to evaluate vendors yourself, and Voyage's 1,024-dimension default in section 2.
+- OpenAI, [Embeddings guide](https://developers.openai.com/api/docs/guides/embeddings), and the [all-MiniLM-L6-v2 model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). The 1,536, 3,072 and 384 defaults in section 2.
+- [pgvector](https://github.com/pgvector/pgvector). That vectors can live in Postgres alongside the rest of your data, the six distance operators, and the warning that results change once an approximate index is added.
 - [FAISS index documentation](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes). The IVF family, and cosine handled by normalizing first.
-- [Sentence-Transformers cross-encoder documentation](https://sbert.net/docs/pretrained-models/ce-msmarco.html). The throughput table behind the reranking latency figures in section 3, measured on a datacenter GPU.
-- Chroma, [Evaluating Chunking Strategies for Retrieval](https://www.trychroma.com/research/evaluating-chunking). One measured comparison of chunk sizes, including the result that the popular large-chunk default underperforms.
+- [Sentence-Transformers cross-encoder documentation](https://sbert.net/docs/pretrained-models/ce-msmarco.html). The throughput table behind the reranking latency figures in section 3, measured on a V100 GPU.
+- Chroma, [Evaluating Chunking Strategies for Retrieval](https://www.trychroma.com/research/evaluating-chunking). One measured comparison of chunk sizes on five small corpora, including the result that OpenAI's 800-token, 400-overlap default scored slightly below average on recall and lowest on every other metric.
 - Gao et al., [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/abs/2312.10997). Chunking practice, hierarchical indexing, and the field's own vocabulary.
 - Barnett et al., [Seven Failure Points When Engineering a RAG System](https://arxiv.org/abs/2401.05856). Missing content answered confidently, which is failure point one.
 
@@ -582,7 +583,7 @@ Grouped by what each one actually supports, so you can check the specific claim 
 - OWASP, [LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/). Top-ranked two editions running, and candid that fool-proof prevention is unclear.
 - Debenedetti et al., [CaMeL: Defeating Prompt Injections by Design](https://arxiv.org/abs/2503.18813) (Google, DeepMind, ETH Zurich). Structural defense rather than better wording.
 - [ConfusedPilot: Compromising Enterprise Information Integrity with Copilot for M365](https://arxiv.org/abs/2408.04870). Injection through ordinary business documents, in a shipped product.
-- MITRE, [CWE-367 Time-of-check Time-of-use](https://cwe.mitre.org/data/definitions/367.html), and Lilienthal & Hong, [TOCTOU Vulnerabilities in LLM-Enabled Agents](https://arxiv.org/abs/2508.17155). Including the measured 12% of agent runs.
+- MITRE, [CWE-367 Time-of-check Time-of-use](https://cwe.mitre.org/data/definitions/367.html), and Lilienthal & Hong, [Mind the Gap: Time-of-Check to Time-of-Use Vulnerabilities in LLM-Enabled Agents](https://arxiv.org/abs/2508.17155). Including the 12% of executed agent runs, measured before countermeasures.
 - Asai et al., [Self-RAG](https://arxiv.org/abs/2310.11511) (ICLR 2024); Yan et al., [Corrective RAG](https://arxiv.org/abs/2401.15884); Yao et al., [ReAct](https://arxiv.org/abs/2210.03629) (ICLR 2023); and the [Agentic RAG survey](https://arxiv.org/abs/2501.09136). What the retry loop in section 3 looks like when it is done properly, and the fact that deciding "this is not enough" is a trained or external capability rather than something an unaided model does well.
 - Anthropic, [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system). The measured research win, the explicit caution about coding, and the roughly 4x and 15x token costs.
 
@@ -613,6 +614,8 @@ tools/export_diagrams.py  regenerates svg/ and png/ from the HTML
 ## Corrections
 
 If something here is wrong, [open an issue](https://github.com/wilsonwu-ai/the-model-is-the-easy-half/issues). Corrections with a primary source attached will be applied and credited.
+
+- **29 September 2026, pre-submission re-check.** Every disputed figure was re-read against the raw source page. Fixed: the chunking defaults and the Chroma comparison in section 1, the embedding dimensions in section 2, the MT-Bench position-bias sentence in section 5, and the Andrew Ng attribution in section 7, which had called paraphrased headings verbatim. Tightened wording in sections 3, 4, 6, 9 and 10.
 
 ## License
 
