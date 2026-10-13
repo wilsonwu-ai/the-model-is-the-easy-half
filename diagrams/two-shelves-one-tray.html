@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two shelves, one tray &#183; Hybrid search</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #f5f5f5;
+      --color-ink:    #2d3142;
+      --color-muted:  #4f5d75;
+      --color-accent: #eb6c36;
+      --font-sans:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-mono:  'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Retrieval &#183; Hybrid search</p>
+    <h1>Two shelves, one tray</h1>
+
+    <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="two-shelves-one-tray-title two-shelves-one-tray-desc">
+      <title id="two-shelves-one-tray-title">Two shelves, one tray</title>
+      <desc id="two-shelves-one-tray-desc">Kitchen scene in which a ticket asking for sharp and sour sends a runner to a shelf filed by taste and brings back lemons, a ticket naming one exact supplier lot sends a runner to a shelf filed by name and brings back that exact jar, and both finds are merged onto one tray for the cook.</desc>
+
+      <defs>
+        <marker id="two-shelves-one-tray-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/>
+        </marker>
+        <marker id="two-shelves-one-tray-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/>
+        </marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- Panel headings -->
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#2d3142">
+        <text x="72" y="104">Asking by feel</text>
+        <text x="704" y="104">Asking by exact name</text>
+      </g>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#7a8399" letter-spacing="0.14em">
+        <text x="72" y="124">MEANING-BASED SEARCH &#183; EMBEDDINGS</text>
+        <text x="704" y="124">KEYWORD SEARCH &#183; EXACT WORDS</text>
+      </g>
+
+      <line x1="644" y1="88" x2="644" y2="440" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+
+      <!-- Connectors first, so boxes sit on top -->
+      <line x1="328" y1="196" x2="328" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#two-shelves-one-tray-arrow)"/>
+      <line x1="960" y1="196" x2="960" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#two-shelves-one-tray-arrow)"/>
+      <path d="M328 396 V422 Q328 430 336 430 H552 Q560 430 560 438 V464" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#two-shelves-one-tray-arrow)"/>
+      <path d="M960 396 V422 Q960 430 952 430 H736 Q728 430 728 438 V464" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#two-shelves-one-tray-arrow)"/>
+      <line x1="804" y1="488" x2="928" y2="488" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#two-shelves-one-tray-arrow-accent)"/>
+
+      <!-- Connector labels, each on an opaque mask with a visible gap -->
+      <rect x="336" y="222" width="44" height="12" rx="2" fill="#f5f5f5"/>
+      <rect x="968" y="222" width="44" height="12" rx="2" fill="#f5f5f5"/>
+      <rect x="416" y="410" width="56" height="12" rx="2" fill="#f5f5f5"/>
+      <rect x="796" y="410" width="96" height="12" rx="2" fill="#f5f5f5"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#7a8399" letter-spacing="0.08em">
+        <text x="342" y="231">RUNNER</text>
+        <text x="974" y="231">RUNNER</text>
+        <text x="444" y="419" text-anchor="middle">LEMONS</text>
+        <text x="844" y="419" text-anchor="middle">THAT EXACT JAR</text>
+      </g>
+
+      <!-- Runners -->
+      <g transform="translate(292,208)" fill="none" stroke="#2d3142" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="5" r="4" fill="#ffffff"/>
+        <polyline points="14,10 11,22"/>
+        <polyline points="14,12 20,18 24,16"/>
+        <polyline points="14,12 8,16 6,14"/>
+        <polyline points="11,22 17,28 15,36"/>
+        <polyline points="11,22 6,30 2,29"/>
+      </g>
+      <g transform="translate(924,208)" fill="none" stroke="#2d3142" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="5" r="4" fill="#ffffff"/>
+        <polyline points="14,10 11,22"/>
+        <polyline points="14,12 20,18 24,16"/>
+        <polyline points="14,12 8,16 6,14"/>
+        <polyline points="11,22 17,28 15,36"/>
+        <polyline points="11,22 6,30 2,29"/>
+      </g>
+
+      <!-- Tickets -->
+      <rect x="208" y="148" width="240" height="48" rx="4" fill="#f5f5f5"/>
+      <rect x="208" y="148" width="240" height="48" rx="4" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <circle cx="208" cy="172" r="5" fill="#f5f5f5"/>
+      <path d="M208 167 A5 5 0 0 1 208 177" fill="none" stroke="#7a8399" stroke-width="1"/>
+      <circle cx="448" cy="172" r="5" fill="#f5f5f5"/>
+      <path d="M448 167 A5 5 0 0 0 448 177" fill="none" stroke="#7a8399" stroke-width="1"/>
+
+      <rect x="840" y="148" width="240" height="48" rx="4" fill="#f5f5f5"/>
+      <rect x="840" y="148" width="240" height="48" rx="4" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <circle cx="840" cy="172" r="5" fill="#f5f5f5"/>
+      <path d="M840 167 A5 5 0 0 1 840 177" fill="none" stroke="#7a8399" stroke-width="1"/>
+      <circle cx="1080" cy="172" r="5" fill="#f5f5f5"/>
+      <path d="M1080 167 A5 5 0 0 0 1080 177" fill="none" stroke="#7a8399" stroke-width="1"/>
+
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#2d3142" text-anchor="middle">
+        <text x="328" y="170">&#8220;Sharp and sour&#8221;</text>
+        <text x="960" y="170">Supplier lot, exact name</text>
+      </g>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#7a8399" text-anchor="middle" letter-spacing="0.08em">
+        <text x="328" y="186">THE WORD LEMON IS NOT ON IT</text>
+        <text x="960" y="186">NAMES ONE JAR, NOTHING ELSE</text>
+      </g>
+
+      <!-- Shelf by taste -->
+      <rect x="168" y="264" width="320" height="132" rx="6" fill="#f5f5f5"/>
+      <rect x="168" y="264" width="320" height="132" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="328" y="288" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Shelf ordered by taste</text>
+      <text x="328" y="304" fill="#7a8399" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">FILED BY TASTE, NOT BY NAME</text>
+      <line x1="184" y1="348" x2="472" y2="348" stroke="#4f5d75" stroke-width="1.2"/>
+      <ellipse cx="224" cy="340" rx="10" ry="7" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <ellipse cx="252" cy="340" rx="10" ry="7" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <circle cx="284" cy="340" r="8" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <circle cx="352" cy="339" r="9" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <circle cx="408" cy="342" r="6" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <circle cx="424" cy="342" r="6" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <line x1="224" y1="372" x2="432" y2="372" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#4f5d75" letter-spacing="0.14em">
+        <text x="184" y="375">SOUR</text>
+        <text x="472" y="375" text-anchor="end">SWEET</text>
+      </g>
+
+      <!-- Shelf by name -->
+      <rect x="800" y="264" width="320" height="132" rx="6" fill="#f5f5f5"/>
+      <rect x="800" y="264" width="320" height="132" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="960" y="288" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">Shelf with name labels</text>
+      <text x="960" y="304" fill="#7a8399" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">FILED BY NAME, A TO Z</text>
+      <line x1="816" y1="348" x2="1104" y2="348" stroke="#4f5d75" stroke-width="1.2"/>
+
+      <rect x="840" y="314" width="20" height="6" rx="2" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="836" y="320" width="28" height="28" rx="4" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="840" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <rect x="884" y="314" width="20" height="6" rx="2" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="880" y="320" width="28" height="28" rx="4" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="884" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <rect x="928" y="314" width="20" height="6" rx="2" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="924" y="320" width="28" height="28" rx="4" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="928" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <rect x="972" y="314" width="20" height="6" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <rect x="968" y="320" width="28" height="28" rx="4" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <rect x="972" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <rect x="1016" y="314" width="20" height="6" rx="2" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="1012" y="320" width="28" height="28" rx="4" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="1016" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <rect x="1060" y="314" width="20" height="6" rx="2" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="1056" y="320" width="28" height="28" rx="4" fill="rgba(79,93,117,0.20)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="1060" y="326" width="20" height="12" rx="2" fill="#f5f5f5" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#4f5d75" text-anchor="middle">
+        <text x="850" y="335">A</text>
+        <text x="894" y="335">D</text>
+        <text x="938" y="335">J</text>
+        <text x="982" y="335" fill="#2d3142" font-weight="600">M</text>
+        <text x="1026" y="335">P</text>
+        <text x="1070" y="335">T</text>
+      </g>
+      <line x1="836" y1="372" x2="1084" y2="372" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#4f5d75" letter-spacing="0.14em">
+        <text x="816" y="375">A</text>
+        <text x="1104" y="375" text-anchor="end">Z</text>
+      </g>
+
+      <!-- Tray (focal) -->
+      <rect x="484" y="464" width="320" height="48" rx="6" fill="#f5f5f5"/>
+      <rect x="484" y="464" width="320" height="48" rx="6" fill="rgba(235,108,54,0.15)" stroke="#eb6c36" stroke-width="1.2"/>
+      <ellipse cx="516" cy="488" rx="10" ry="7" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <rect x="770" y="476" width="12" height="4" rx="1" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="768" y="480" width="16" height="16" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <text x="644" y="484" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">One tray, both finds</text>
+      <text x="644" y="500" fill="#7a8399" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">HYBRID SEARCH &#183; MERGED</text>
+
+      <!-- Cook -->
+      <rect x="928" y="464" width="160" height="48" rx="6" fill="#f5f5f5"/>
+      <rect x="928" y="464" width="160" height="48" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="1008" y="484" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The cook</text>
+      <text x="1008" y="500" fill="#7a8399" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">READS THE TRAY</text>
+
+      <!-- Side note -->
+      <rect x="72" y="464" width="384" height="120" rx="6" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="88" y="484" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">SIDE NOTE</text>
+      <g font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-style="italic" font-size="16" fill="#2d3142">
+        <text x="88" y="508">Taste shelf alone, exact-lot ticket:</text>
+        <text x="88" y="528">a close-tasting jar comes back instead.</text>
+        <text x="88" y="548">The plate still reaches the pass,</text>
+        <text x="88" y="568">the counter where plates go out.</text>
+      </g>
+
+      <!-- Legend -->
+      <line x1="72" y1="620" x2="1216" y2="620" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+      <text x="72" y="640" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="72" y="658" width="16" height="12" rx="2" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="272" y="658" width="16" height="12" rx="2" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <circle cx="472" cy="664" r="5" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <rect x="696" y="658" width="16" height="12" rx="2" fill="rgba(235,108,54,0.15)" stroke="#eb6c36" stroke-width="1.2"/>
+      <rect x="976" y="658" width="16" height="12" rx="2" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#4f5d75">
+        <text x="96" y="668">TICKET = THE QUESTION</text>
+        <text x="296" y="668">SHELF = HOW FOOD IS FILED</text>
+        <text x="488" y="668">OUTLINED ITEM = WHAT THE RUNNER FINDS</text>
+        <text x="720" y="668">TRAY = HYBRID SEARCH, BOTH FINDS MERGED</text>
+        <text x="1000" y="668">SIDE NOTE</text>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

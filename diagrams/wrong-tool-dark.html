@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask the right station &#183; When retrieval is the wrong tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #2d3142;
+      --color-ink:    #f5f5f5;
+      --color-muted:  #bfc0c0;
+      --color-accent: #f08a59;
+      --font-sans:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-mono:  'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Retrieval &#183; When it is the wrong tool</p>
+    <h1>Ask the right station</h1>
+
+    <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="wrong-tool-dark-title wrong-tool-dark-desc">
+      <title id="wrong-tool-dark-title">Ask the right station</title>
+      <desc id="wrong-tool-dark-desc">Kitchen scene routing four kinds of question: a question about what a recipe says goes to the runner and the pantry, a question about tonight's takings goes to the till and not to the recipe cards, a menu that fits on one card goes straight to the cook, and a recipe nobody wrote down meets a stop sign and must be written down first.</desc>
+
+      <defs>
+        <marker id="wrong-tool-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/>
+        </marker>
+        <marker id="wrong-tool-dark-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f08a59"/>
+        </marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#2d3142"/>
+
+      <!-- Column headings -->
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#f5f5f5">
+        <text x="72" y="104">Four questions arrive</text>
+        <text x="448" y="104">Where each one goes</text>
+        <text x="880" y="104">In system terms</text>
+      </g>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#8e98ac" letter-spacing="0.14em">
+        <text x="72" y="124">AT THE KITCHEN DOOR</text>
+        <text x="448" y="124">THE RIGHT STATION</text>
+        <text x="880" y="124">KITCHEN TO SYSTEM</text>
+      </g>
+      <line x1="848" y1="88" x2="848" y2="596" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+
+      <!-- Connectors first, so boxes sit on top -->
+      <line x1="312" y1="188" x2="448" y2="188" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#wrong-tool-dark-arrow)"/>
+      <path d="M312 304 H328 Q336 304 336 296 V288 Q336 280 344 280 H448" fill="none" stroke="#f08a59" stroke-width="1.2" marker-end="url(#wrong-tool-dark-arrow-accent)"/>
+      <path d="M312 328 H328 Q336 328 336 336 V344 Q336 352 344 352 H448" fill="none" stroke="rgba(191,192,192,0.60)" stroke-width="1.2" stroke-dasharray="2,4" stroke-linecap="round"/>
+      <line x1="312" y1="444" x2="448" y2="444" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#wrong-tool-dark-arrow)"/>
+      <line x1="312" y1="548" x2="384" y2="548" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#wrong-tool-dark-arrow)"/>
+
+      <!-- Cross-out mark on the wrong path -->
+      <rect x="384" y="340" width="24" height="24" rx="4" fill="#2d3142"/>
+      <g stroke="#f5f5f5" stroke-width="1.2" stroke-linecap="round">
+        <line x1="388" y1="344" x2="404" y2="360"/>
+        <line x1="404" y1="344" x2="388" y2="360"/>
+      </g>
+
+      <!-- Question cards -->
+      <rect x="72" y="156" width="240" height="64" rx="4" fill="#2d3142"/>
+      <rect x="72" y="156" width="240" height="64" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="72" cy="188" r="5" fill="#2d3142"/>
+      <path d="M72 183 A5 5 0 0 1 72 193" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="312" cy="188" r="5" fill="#2d3142"/>
+      <path d="M312 183 A5 5 0 0 0 312 193" fill="none" stroke="#8e98ac" stroke-width="1"/>
+
+      <rect x="72" y="284" width="240" height="64" rx="4" fill="#2d3142"/>
+      <rect x="72" y="284" width="240" height="64" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="72" cy="316" r="5" fill="#2d3142"/>
+      <path d="M72 311 A5 5 0 0 1 72 321" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="312" cy="316" r="5" fill="#2d3142"/>
+      <path d="M312 311 A5 5 0 0 0 312 321" fill="none" stroke="#8e98ac" stroke-width="1"/>
+
+      <rect x="72" y="412" width="240" height="64" rx="4" fill="#2d3142"/>
+      <rect x="72" y="412" width="240" height="64" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="72" cy="444" r="5" fill="#2d3142"/>
+      <path d="M72 439 A5 5 0 0 1 72 449" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="312" cy="444" r="5" fill="#2d3142"/>
+      <path d="M312 439 A5 5 0 0 0 312 449" fill="none" stroke="#8e98ac" stroke-width="1"/>
+
+      <rect x="72" y="516" width="240" height="64" rx="4" fill="#2d3142"/>
+      <rect x="72" y="516" width="240" height="64" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="72" cy="548" r="5" fill="#2d3142"/>
+      <path d="M72 543 A5 5 0 0 1 72 553" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="312" cy="548" r="5" fill="#2d3142"/>
+      <path d="M312 543 A5 5 0 0 0 312 553" fill="none" stroke="#8e98ac" stroke-width="1"/>
+
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#f5f5f5" text-anchor="middle">
+        <text x="192" y="186">What does the recipe say?</text>
+        <text x="192" y="314">What are tonight&#8217;s takings?</text>
+        <text x="192" y="442">What is on tonight&#8217;s menu?</text>
+        <text x="192" y="546">How is Gran&#8217;s sauce made?</text>
+      </g>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#8e98ac" text-anchor="middle" letter-spacing="0.08em">
+        <text x="192" y="202">A FACT WRITTEN ON THE CARDS</text>
+        <text x="192" y="330">A TOTAL OF EVERY SALE</text>
+        <text x="192" y="458">THE MENU FITS ON ONE CARD</text>
+        <text x="192" y="562">NOBODY EVER WROTE IT DOWN</text>
+      </g>
+
+      <!-- Row 1: runner and pantry -->
+      <rect x="448" y="148" width="368" height="80" rx="6" fill="#2d3142"/>
+      <rect x="448" y="148" width="368" height="80" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <g transform="translate(464,170)" fill="none" stroke="#f5f5f5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="5" r="4" fill="#393e53"/>
+        <polyline points="14,10 11,22"/>
+        <polyline points="14,12 20,18 24,16"/>
+        <polyline points="14,12 8,16 6,14"/>
+        <polyline points="11,22 17,28 15,36"/>
+        <polyline points="11,22 6,30 2,29"/>
+      </g>
+      <line x1="504" y1="208" x2="596" y2="208" stroke="#bfc0c0" stroke-width="1.2"/>
+      <g fill="rgba(191,192,192,0.20)" stroke="#bfc0c0" stroke-width="1">
+        <rect x="512" y="180" width="20" height="28" rx="2"/>
+        <rect x="540" y="180" width="20" height="28" rx="2"/>
+        <rect x="568" y="180" width="20" height="28" rx="2"/>
+      </g>
+      <g stroke="rgba(245,245,245,0.35)" stroke-width="0.8" stroke-linecap="round">
+        <line x1="516" y1="188" x2="528" y2="188"/><line x1="516" y1="194" x2="528" y2="194"/>
+        <line x1="544" y1="188" x2="556" y2="188"/><line x1="544" y1="194" x2="556" y2="194"/>
+        <line x1="572" y1="188" x2="584" y2="188"/><line x1="572" y1="194" x2="584" y2="194"/>
+      </g>
+      <text x="608" y="184" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Runner fetches the cards</text>
+      <text x="608" y="200" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.08em">FROM THE PANTRY, FOR THE COOK</text>
+
+      <!-- Row 2: the till (focal) -->
+      <rect x="448" y="252" width="368" height="56" rx="6" fill="#2d3142"/>
+      <rect x="448" y="252" width="368" height="56" rx="6" fill="rgba(240,138,89,0.18)" stroke="#f08a59" stroke-width="1.2"/>
+      <rect x="472" y="260" width="20" height="10" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1.2"/>
+      <rect x="464" y="270" width="36" height="26" rx="3" fill="#393e53" stroke="#f5f5f5" stroke-width="1.2"/>
+      <line x1="464" y1="288" x2="500" y2="288" stroke="#f5f5f5" stroke-width="1"/>
+      <g fill="#f5f5f5">
+        <circle cx="474" cy="279" r="1.5"/><circle cx="482" cy="279" r="1.5"/><circle cx="490" cy="279" r="1.5"/>
+      </g>
+      <text x="608" y="276" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">The till adds it up</text>
+      <text x="608" y="292" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.08em">EXACT SUM, SHOWS ITS WORKING</text>
+
+      <!-- Row 2: the wrong route, faded -->
+      <rect x="448" y="324" width="368" height="56" rx="6" fill="#2d3142"/>
+      <rect x="448" y="324" width="368" height="56" rx="6" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+      <g opacity="0.65">
+        <g fill="#393e53" stroke="#f5f5f5" stroke-width="1">
+          <rect x="464" y="342" width="24" height="28" rx="2"/>
+          <rect x="472" y="338" width="24" height="28" rx="2"/>
+          <rect x="480" y="334" width="24" height="28" rx="2"/>
+        </g>
+        <text x="608" y="346" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Recipe cards</text>
+        <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#bfc0c0" letter-spacing="0.08em">
+          <text x="608" y="360">FINDS A CARD ABOUT MONEY,</text>
+          <text x="608" y="372">MAY BE AN OLD TOTAL</text>
+        </g>
+      </g>
+
+      <!-- Row 3: the cook with the whole card -->
+      <rect x="448" y="404" width="368" height="80" rx="6" fill="#2d3142"/>
+      <rect x="448" y="404" width="368" height="80" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <g transform="translate(464,424)" fill="none" stroke="#f5f5f5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="13" cy="4" rx="7" ry="4" fill="#393e53"/>
+        <rect x="9" y="7" width="8" height="3" fill="#393e53"/>
+        <circle cx="13" cy="15" r="4" fill="#393e53"/>
+        <polyline points="13,19 13,32"/>
+        <polyline points="13,22 20,27 30,24"/>
+        <polyline points="13,22 7,28"/>
+        <polyline points="13,32 8,42"/>
+        <polyline points="13,32 18,42"/>
+      </g>
+      <rect x="496" y="424" width="32" height="40" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1.2"/>
+      <g stroke="rgba(245,245,245,0.45)" stroke-width="0.8" stroke-linecap="round">
+        <line x1="502" y1="434" x2="522" y2="434"/><line x1="502" y1="442" x2="522" y2="442"/>
+        <line x1="502" y1="450" x2="522" y2="450"/><line x1="502" y1="458" x2="514" y2="458"/>
+      </g>
+      <text x="608" y="440" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Cook reads the whole card</text>
+      <text x="608" y="456" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.08em">HANDED STRAIGHT OVER, SHOWN IN FULL</text>
+
+      <!-- Row 4: stop sign and the empty pantry -->
+      <rect x="448" y="508" width="368" height="80" rx="6" fill="#2d3142"/>
+      <rect x="448" y="508" width="368" height="80" rx="6" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="464" y1="564" x2="568" y2="564" stroke="#bfc0c0" stroke-width="1.2"/>
+      <g fill="none" stroke="rgba(245,245,245,0.35)" stroke-width="1" stroke-dasharray="3,3">
+        <rect x="472" y="536" width="20" height="28" rx="2"/>
+        <rect x="504" y="536" width="20" height="28" rx="2"/>
+        <rect x="536" y="536" width="20" height="28" rx="2"/>
+      </g>
+      <text x="608" y="536" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Nothing on the shelf</text>
+      <rect x="608" y="548" width="168" height="24" rx="4" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+      <text x="692" y="565" fill="#f5f5f5" font-size="16" font-style="italic" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" text-anchor="middle">write it down first</text>
+
+      <polygon points="398,524 418,524 432,538 432,558 418,572 398,572 384,558 384,538" fill="#2d3142"/>
+      <polygon points="398,524 418,524 432,538 432,558 418,572 398,572 384,558 384,538" fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round"/>
+      <text x="408" y="551" fill="#f5f5f5" font-size="8" font-weight="600" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">STOP</text>
+      <text x="408" y="584" fill="#8e98ac" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">NO ROUTE</text>
+
+      <!-- System column -->
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#f5f5f5">
+        <text x="880" y="184">Retrieval over documents</text>
+        <text x="880" y="276">Database query</text>
+        <text x="880" y="440">Full context</text>
+        <text x="880" y="536">Missing knowledge</text>
+      </g>
+      <text x="880" y="346" fill="#8e98ac" font-size="12" font-weight="600" text-decoration="line-through" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Search over documents</text>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#8e98ac" letter-spacing="0.08em">
+        <text x="880" y="200">THE FACT IS WRITTEN IN PROSE</text>
+        <text x="880" y="292">A NUMBER COMPUTED FROM RECORDS</text>
+        <text x="880" y="362">THE WRONG TOOL FOR A SUM</text>
+        <text x="880" y="456">SMALL ENOUGH TO SHOW IN FULL</text>
+        <text x="880" y="552">NOTHING TO RETRIEVE YET</text>
+      </g>
+
+      <!-- Legend -->
+      <line x1="72" y1="620" x2="1216" y2="620" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <text x="72" y="640" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="72" y="658" width="16" height="12" rx="2" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <rect x="280" y="658" width="16" height="12" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <rect x="440" y="658" width="16" height="12" rx="2" fill="rgba(240,138,89,0.18)" stroke="#f08a59" stroke-width="1.2"/>
+      <rect x="696" y="658" width="16" height="12" rx="2" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+      <polygon points="852,657 860,657 866,663 866,665 860,671 852,671 846,665 846,663" fill="#393e53" stroke="#f5f5f5" stroke-width="1" stroke-linejoin="round"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8" fill="#bfc0c0">
+        <text x="96" y="668">QUESTION CARD</text>
+        <text x="304" y="668">STATION</text>
+        <text x="464" y="668">THE EXACT-ANSWER STATION</text>
+        <text x="720" y="668">WRONG OR EMPTY ROUTE</text>
+        <text x="876" y="668">STOP = NO ROUTE AT ALL</text>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
