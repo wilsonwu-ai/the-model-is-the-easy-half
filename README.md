@@ -526,6 +526,41 @@ That last row is not a joke. In my experience, a meaningful share of retrieval p
 
 ---
 
+## The whole article on one card
+
+Everything above, squeezed onto one page. Each stage gets one plain word, and each section gets one card: what it does, two things it gives you, the one way it fails quietly, and when to reach for it. Every line comes from its section, so a card is a reminder, not a replacement.
+
+```text
+Parsing                    ->  Unpacking
+            ↓
+Chunking / Indexing        ->  Stocking
+            ↓
+Embedding                  ->  Taste-labeling
+            ↓
+Retrieval                  ->  Fetching
+            ↓
+Reranking                  ->  Re-checking
+            ↓
+Serialization              ->  Ticketing
+            ↓
+Language model             ->  Cooking
+            ↓
+Evaluation / Verification  ->  Tasting
+            ↓
+Permissions / Topology     ->  Reaching the pass
+            ↓
+Production                 ->  Saturday rush
+```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/png/cheat-sheet-dark.png">
+  <img alt="Nine cards, one per numbered section. Each card names the system term and its plain role, says what it does in one sentence, shows a tiny sketch, lists two things it gives you and one quiet way it fails, and ends with when to use it." src="diagrams/png/cheat-sheet.png">
+</picture>
+
+The card layout is borrowed from [an AI agent cheat sheet by Gauri Tripathi](https://x.com/GauriTripa94282/status/2109552460708950488).
+
+---
+
 ## 10. Run it yourself
 
 > **Like you're five.**
@@ -749,7 +784,7 @@ README.md                 this article
 demo/tiny_rag.py          the runnable demo: six stages, three deliberate failures
 demo/test_tiny_rag.py     32 tests, including one that asserts a failure
 demo/real_rag.py          the same six steps with real components
-diagrams/*.html           the eight diagrams, light and dark, self-contained
+diagrams/*.html           the twelve diagrams, light and dark, self-contained
 diagrams/svg/             scalable exports
 diagrams/png/             what the README embeds
 tools/export_diagrams.py  regenerates svg/ and png/ from the HTML

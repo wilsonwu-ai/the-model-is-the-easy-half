@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 1372" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cheat-sheet-dark-title cheat-sheet-dark-desc">
+      <title id="cheat-sheet-dark-title">The whole article on one card</title>
+      <desc id="cheat-sheet-dark-desc">A three by three grid of nine numbered cards, one per article section: parsing and indexing, embedding, retrieval and reranking, serialization, verification, permissions and topology, production, traceability, and knowing the wrong tool. Each card has a one-sentence description, a small boxes-and-arrows sketch, two advantages marked with ticks, one drawback marked with a cross, and a use-when strip.</desc>
+
+      <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+        <marker id="cheat-sheet-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/>
+        </marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#2d3142"/>
+
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+
+      <!-- Headings -->
+      <text x="38" y="56" fill="#f5f5f5" font-size="15" font-weight="600">Nine sections, in article order</text>
+      <text x="38" y="78" fill="#8e98ac" font-size="10" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">TICK = WHAT YOU GAIN &#183; CROSS = WHAT IT COSTS</text>
+
+      <!-- Card 1 -->
+      <g transform="translate(38,100)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">1. Parsing and Indexing</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">KNOWLEDGE PREP</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Turns your documents into labeled, searchable</text>
+          <text x="20" y="83">passages before anyone asks a question.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(10,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="22" width="58" height="48" rx="3"/>
+              <rect x="73" y="22" width="54" height="48" rx="3"/>
+              <rect x="142" y="22" width="66" height="48" rx="3"/>
+              <rect x="223" y="22" width="44" height="48" rx="3"/>
+              <rect x="282" y="22" width="54" height="48" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" marker-end="url(#cheat-sheet-dark-arrow)">
+              <line x1="58" y1="46" x2="72" y2="46"/>
+              <line x1="127" y1="46" x2="141" y2="46"/>
+              <line x1="208" y1="46" x2="222" y2="46"/>
+              <line x1="267" y1="46" x2="281" y2="46"/>
+            </g>
+            <circle cx="127" cy="22" r="4.5" fill="#f08a59"/>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="29" y="49.4">Documents</text>
+              <text x="100" y="43.9">Unpack</text><text x="100" y="55">text</text>
+              <text x="175" y="38.4">Cut into</text><text x="175" y="49.4">overlapping</text><text x="175" y="60.4">passages</text>
+              <text x="245" y="49.4">Label</text>
+              <text x="309" y="43.9">Shelf</text><text x="309" y="55">(index)</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Decides most of the answer quality</text>
+          <text x="42" y="246">Runs on a schedule, offline</text>
+          <text x="42" y="270">Mangled text or stale shelves go unnoticed</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">you want answers drawn from your own</text>
+          <text x="94" y="338">documents</text>
+        </g>
+      </g>
+
+      <!-- Card 2 -->
+      <g transform="translate(446,100)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">2. Embedding</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">MEANING SEARCH</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Stores text as lists of numbers by meaning, so</text>
+          <text x="20" y="83">different wording still finds the passage.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(10,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="8" y="8" width="118" height="32" rx="3"/>
+              <rect x="8" y="52" width="118" height="32" rx="3"/>
+              <rect x="232" y="28" width="92" height="36" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M126 24 H170 V46 H230" marker-end="url(#cheat-sheet-dark-arrow)"/>
+              <path d="M126 68 H170 V46"/>
+            </g>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="67" y="21.9">Taste shelf</text><text x="67" y="33">(meaning)</text>
+              <text x="67" y="65.9">Name-label shelf</text><text x="67" y="77">(keywords)</text>
+              <text x="278" y="49.4">Tray</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Finds matches that share no words</text>
+          <text x="42" y="246">Better at synonyms than word matching</text>
+          <text x="42" y="270">Exact codes and names come back close but wrong</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">people ask in words your documents</text>
+          <text x="94" y="338">never use</text>
+        </g>
+      </g>
+
+      <!-- Card 3 -->
+      <g transform="translate(854,100)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">3. Retrieval and Reranking</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">FETCH AND CHECK</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Grabs a fast shortlist of passages, then</text>
+          <text x="20" y="83">re-scores it more carefully before the cook</text>
+          <text x="20" y="100">sees it.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(9,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="14" width="48" height="40" rx="3"/>
+              <rect x="61" y="14" width="44" height="40" rx="3"/>
+              <rect x="118" y="14" width="38" height="40" rx="3"/>
+              <rect x="169" y="14" width="52" height="40" rx="3"/>
+              <rect x="234" y="14" width="54" height="40" rx="3"/>
+              <rect x="301" y="14" width="36" height="40" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" marker-end="url(#cheat-sheet-dark-arrow)">
+              <line x1="48" y1="34" x2="60" y2="34"/>
+              <line x1="105" y1="34" x2="117" y2="34"/>
+              <line x1="156" y1="34" x2="168" y2="34"/>
+              <line x1="221" y1="34" x2="233" y2="34"/>
+              <line x1="288" y1="34" x2="300" y2="34"/>
+              <path d="M319 54 V78 H137 V56" stroke-dasharray="4,3" stroke-linejoin="round"/>
+            </g>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="24" y="37.4">Question</text>
+              <text x="83" y="37.4">Rewrite</text>
+              <text x="137" y="31.9">Shelf</text><text x="137" y="43">map</text>
+              <text x="195" y="37.4">Shortlist</text>
+              <text x="261" y="31.9">Sous-chef</text><text x="261" y="43">re-check</text>
+              <text x="319" y="37.4">Cook</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Avoids searching every passage</text>
+          <text x="42" y="246">Reranker reads question and passage together</text>
+          <text x="42" y="270">The quick map occasionally misses, and</text>
+          <text x="42" y="286">reranking gets dropped under load</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">there are too many passages to read</text>
+          <text x="94" y="338">one by one</text>
+        </g>
+      </g>
+
+      <!-- Card 4 -->
+      <g transform="translate(38,500)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">4. Serialization</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">DATA HANDOFF</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Writes data down as text so it survives the</text>
+          <text x="20" y="83">trip between services.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(10,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="18" width="76" height="46" rx="3"/>
+              <rect x="130" y="18" width="76" height="46" rx="3"/>
+              <rect x="260" y="18" width="76" height="46" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" marker-end="url(#cheat-sheet-dark-arrow)">
+              <line x1="76" y1="41" x2="129" y2="41"/>
+              <line x1="206" y1="41" x2="259" y2="41"/>
+            </g>
+            <ellipse cx="233" cy="41" rx="10" ry="3.5" fill="#f08a59" fill-opacity="0.7"/>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="38" y="36">Service</text>
+              <text x="168" y="36">Service</text>
+              <text x="298" y="36">Service</text>
+            </g>
+            <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="38" y="54">ID: X</text>
+              <text x="168" y="54">ID: X</text>
+              <text x="298" y="54">ID: Y</text>
+            </g>
+            <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#bfc0c0" text-anchor="middle">
+              <text x="103" y="34">ticket</text>
+              <text x="233" y="34">ticket</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Simple and read almost everywhere</text>
+          <text x="42" y="246">One format nearly every service reads</text>
+          <text x="42" y="270">Big IDs round and fraction money drifts,</text>
+          <text x="42" y="286">with no error</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">data crosses from one service to another</text>
+        </g>
+      </g>
+
+      <!-- Card 5 -->
+      <g transform="translate(446,500)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">5. Verification</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">INDEPENDENT CHECK</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Checks every sentence against the passages</text>
+          <text x="20" y="83">actually retrieved, a check the cook cannot</text>
+          <text x="20" y="100">talk round.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(8,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="6" width="116" height="30" rx="3"/>
+              <rect x="0" y="54" width="116" height="30" rx="3"/>
+              <rect x="158" y="30" width="76" height="32" rx="3"/>
+              <rect x="276" y="40" width="64" height="26" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#cheat-sheet-dark-arrow)">
+              <line x1="116" y1="21" x2="156" y2="40"/>
+              <line x1="116" y1="69" x2="156" y2="53"/>
+              <path d="M290 40 C284 14 326 14 322 40"/>
+            </g>
+            <path d="M300 14 L312 26 M312 14 L300 26" fill="none" stroke="#f08a59" stroke-width="1.8" stroke-linecap="round"/>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="58" y="24.4">Plate</text>
+              <text x="58" y="66.9">Tray</text><text x="58" y="78">(retrieved passages)</text>
+              <text x="196" y="49.4">Taster</text>
+              <text x="308" y="56.4">Cook</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Catches sentences nobody wrote</text>
+          <text x="42" y="246">Lets the system say it does not know</text>
+          <text x="42" y="270">Catches invented facts, misses swapped limits</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">a wrong but fluent answer would cost you</text>
+        </g>
+      </g>
+
+      <!-- Card 6 -->
+      <g transform="translate(854,500)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">6. Permissions and Topology</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">HARD LIMITS</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Puts the risky action out of the model's reach</text>
+          <text x="20" y="83">instead of asking it to hold back.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+            <rect x="40" y="8" width="90" height="30" rx="3"/>
+            <rect x="200" y="8" width="100" height="30" rx="3"/>
+            <rect x="40" y="54" width="90" height="30" rx="3"/>
+            <rect x="200" y="54" width="100" height="30" rx="3"/>
+          </g>
+          <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" marker-end="url(#cheat-sheet-dark-arrow)">
+            <line x1="130" y1="23" x2="198" y2="23"/>
+            <line x1="130" y1="69" x2="198" y2="69"/>
+          </g>
+          <rect x="24" y="43" width="292" height="6" rx="1" fill="#f08a59"/>
+          <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+            <text x="85" y="26.4">Cook</text>
+            <text x="250" y="26.4">Draft file</text>
+            <text x="85" y="72.4">Person</text>
+            <text x="250" y="72.4">Send</text>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Planted text cannot trigger a removed action</text>
+          <text x="42" y="246">A person sends the draft</text>
+          <text x="42" y="270">Check-then-act races and filtered results</text>
+          <text x="42" y="286">remain</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">the system can take an action, like</text>
+          <text x="94" y="338">sending email</text>
+        </g>
+      </g>
+
+      <!-- Card 7 -->
+      <g transform="translate(38,900)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">7. Production</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">REAL-WORLD OPS</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">The ordinary software underneath the model,</text>
+          <text x="20" y="83">which has to hold up when real users arrive.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="58" y="6" width="84" height="18" rx="3"/>
+            <rect x="30" y="30" width="140" height="14" rx="3"/>
+            <rect x="30" y="48" width="140" height="14" rx="3"/>
+            <rect x="30" y="66" width="140" height="18" rx="3"/>
+            <path d="M232 8 H292 L280 24 H244 Z"/>
+            <ellipse cx="262" cy="50" rx="30" ry="7"/>
+          </g>
+          <ellipse cx="262" cy="49" rx="12" ry="3" fill="#f08a59" fill-opacity="0.45"/>
+          <g stroke="#f08a59" stroke-width="1.4" stroke-linecap="round" fill="none">
+            <path d="M246 29 v6 M262 29 v8 M278 29 v6"/>
+            <path d="M192 71 L200 79 M200 71 L192 79" stroke-width="1.6"/>
+          </g>
+          <line x1="170" y1="75" x2="222" y2="75" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="3,3"/>
+          <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+            <text x="100" y="18.4">Cook</text>
+            <text x="100" y="78.4">Data</text>
+          </g>
+          <text x="262" y="74" text-anchor="middle" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#bfc0c0">saved answer</text>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Streaming spares users a blank screen</text>
+          <text x="42" y="246">Saved copies skip repeat work</text>
+          <text x="42" y="270">A cache keeps serving stale or deleted content</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">real users and real load are coming</text>
+        </g>
+      </g>
+
+      <!-- Card 8 -->
+      <g transform="translate(446,900)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">8. Traceability</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">RECORD KEEPING</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Keeps the records that let you rebuild which</text>
+          <text x="20" y="83">inputs produced a given answer.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(6,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="6" width="46" height="28" rx="3"/>
+              <rect x="70" y="6" width="60" height="28" rx="3"/>
+              <rect x="186" y="32" width="46" height="28" rx="3"/>
+              <rect x="0" y="58" width="46" height="28" rx="3"/>
+              <rect x="70" y="56" width="100" height="32" rx="3"/>
+              <rect x="262" y="16" width="80" height="26" rx="3"/>
+            </g>
+            <rect x="262" y="50" width="80" height="18" rx="3" fill="#f08a59" fill-opacity="0.2" stroke="#f08a59" stroke-width="1"/>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round" marker-end="url(#cheat-sheet-dark-arrow)">
+              <line x1="46" y1="20" x2="69" y2="20"/>
+              <line x1="130" y1="20" x2="185" y2="38"/>
+              <line x1="46" y1="72" x2="69" y2="72"/>
+              <line x1="170" y1="72" x2="185" y2="55"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round">
+              <line x1="262" y1="29" x2="232" y2="46"/>
+              <line x1="302" y1="42" x2="302" y2="50"/>
+            </g>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="23" y="23.4">Query</text>
+              <text x="100" y="17.9">Retrieval</text><text x="100" y="29">log</text>
+              <text x="209" y="49.4">Chunk</text>
+              <text x="23" y="75.4">Answer</text>
+              <text x="120" y="69.9">Citation</text><text x="120" y="81">(character range)</text>
+              <text x="302" y="32.4">Embedding</text>
+            </g>
+            <text x="302" y="62" text-anchor="middle" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#f5f5f5">model-version</text>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Wrong answers trace back to one passage</text>
+          <text x="42" y="246">Shows which vectors came from which model</text>
+          <text x="42" y="270">The tables must exist months before anyone asks</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">someone asks why it said that</text>
+        </g>
+      </g>
+
+      <!-- Card 9 -->
+      <g transform="translate(854,900)">
+        <rect width="388" height="380" rx="8" fill="#393e53" stroke="#8e98ac" stroke-width="1"/>
+        <text x="20" y="32" font-size="15" font-weight="600" fill="#f5f5f5">9. Knowing the Wrong Tool</text>
+        <text x="368" y="32" text-anchor="end" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" letter-spacing="0.08em" fill="#bfc0c0">RIGHT TOOL</text>
+        <line x1="16" y1="44" x2="372" y2="44" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+        <g font-size="12.5" fill="#f5f5f5">
+          <text x="20" y="66">Sends computed numbers to a database, and</text>
+          <text x="20" y="83">short material straight to the cook.</text>
+        </g>
+        <g transform="translate(16,110)">
+          <rect width="356" height="92" rx="5" fill="#2d3142" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+          <g transform="translate(10,0)">
+            <g fill="#393e53" stroke="#f5f5f5" stroke-width="1.2" stroke-linejoin="round">
+              <rect x="0" y="30" width="64" height="32" rx="3"/>
+              <rect x="218" y="3" width="118" height="18" rx="3"/>
+              <rect x="218" y="25" width="118" height="18" rx="3"/>
+              <rect x="218" y="47" width="118" height="18" rx="3"/>
+              <rect x="218" y="69" width="118" height="18" rx="3"/>
+            </g>
+            <g stroke="#bfc0c0" stroke-width="1.2" fill="none" stroke-linecap="round">
+              <path d="M64 46 H76 M76 12 V78"/>
+              <g marker-end="url(#cheat-sheet-dark-arrow)">
+                <line x1="76" y1="12" x2="216" y2="12"/>
+                <line x1="76" y1="34" x2="216" y2="34"/>
+                <line x1="76" y1="56" x2="216" y2="56"/>
+                <line x1="76" y1="78" x2="216" y2="78"/>
+              </g>
+            </g>
+            <g font-size="9.5" fill="#f5f5f5" text-anchor="middle">
+              <text x="32" y="49.4">Question</text>
+              <text x="277" y="15.4">Runner and pantry</text>
+              <text x="277" y="37.4">Till (database)</text>
+              <text x="277" y="59.4">Straight to Cook</text>
+              <text x="277" y="81.4">Write it down first</text>
+            </g>
+            <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#bfc0c0">
+              <text x="84" y="8">prose fact</text>
+              <text x="84" y="30">computed number</text>
+              <text x="84" y="52">small material</text>
+              <text x="84" y="74">never written</text>
+            </g>
+          </g>
+        </g>
+        <g transform="translate(22,217)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,237)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g transform="translate(22,261)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="42" y="226">Database computes the number exactly</text>
+          <text x="42" y="246">Shows the query so a person can check</text>
+          <text x="42" y="270">Knowledge never written down: no tool</text>
+          <text x="42" y="286">recovers it</text>
+        </g>
+        <rect x="12" y="300" width="364" height="68" rx="5" fill="rgba(240,138,89,0.18)"/>
+        <text x="26" y="322" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" font-weight="600" letter-spacing="0.06em" fill="#f5f5f5">USE WHEN:</text>
+        <g font-size="12" fill="#f5f5f5">
+          <text x="94" y="322">use something else when the answer is a</text>
+          <text x="94" y="338">computed number or fits on one card</text>
+        </g>
+      </g>
+
+      <!-- Legend -->
+      <line x1="38" y1="1304" x2="1242" y2="1304" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <text x="38" y="1326" fill="#bfc0c0" font-size="9.5" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
+      <g transform="translate(38,1337)"><path d="M0 5.5 L3.6 9 L10 1.5" fill="none" stroke="#f5f5f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <g transform="translate(176,1337)"><path d="M1 1 L9 9 M9 1 L1 9" fill="none" stroke="#f08a59" stroke-width="1.6" stroke-linecap="round"/></g>
+      <rect x="318" y="1337" width="16" height="12" rx="2" fill="rgba(240,138,89,0.18)"/>
+      <rect x="540" y="1337" width="16" height="12" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <circle cx="760" cy="1343" r="4.5" fill="#f08a59"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#bfc0c0">
+        <text x="56" y="1346">WHAT YOU GAIN</text>
+        <text x="194" y="1346">WHAT IT COSTS</text>
+        <text x="342" y="1346">WHEN TO REACH FOR IT</text>
+        <text x="564" y="1346">STEP IN THE SKETCH</text>
+        <text x="774" y="1346">ACCENT IN A SKETCH = WHERE IT GOES WRONG</text>
+      </g>
+
+      </g>
+    </svg>
