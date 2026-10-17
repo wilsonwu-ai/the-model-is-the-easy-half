@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="two-score-sheets-dark-title two-score-sheets-dark-desc">
+      <title id="two-score-sheets-dark-title">Grade the runner and the cook separately</title>
+      <desc id="two-score-sheets-dark-desc">Kitchen scene in which a ticket and an off-menu ticket go to the runner, who brings a tray, after which the cook makes a plate; one score sheet is clipped to the tray to grade retrieval and a second is clipped to the plate to grade generation, so a failure can be traced to the runner or to the cook.</desc>
+
+      <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+        <marker id="two-score-sheets-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/>
+        </marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#2d3142"/>
+
+      <!-- Connectors first, so boxes sit on top -->
+      <line x1="288" y1="136" x2="344" y2="136" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#two-score-sheets-dark-arrow)"/>
+      <line x1="288" y1="248" x2="344" y2="248" stroke="#bfc0c0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#two-score-sheets-dark-arrow)"/>
+      <line x1="504" y1="192" x2="560" y2="192" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#two-score-sheets-dark-arrow)"/>
+      <line x1="760" y1="192" x2="816" y2="192" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#two-score-sheets-dark-arrow)"/>
+      <line x1="976" y1="192" x2="1032" y2="192" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#two-score-sheets-dark-arrow)"/>
+      <line x1="592" y1="236" x2="592" y2="348" stroke="#bfc0c0" stroke-width="1.2"/>
+      <line x1="1124" y1="236" x2="1124" y2="348" stroke="#bfc0c0" stroke-width="1.2"/>
+
+      <!-- Ticket -->
+      <rect x="72" y="100" width="216" height="72" rx="4" fill="#2d3142"/>
+      <rect x="72" y="100" width="216" height="72" rx="4" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="72" cy="136" r="5" fill="#2d3142"/>
+      <path d="M72 131 A5 5 0 0 1 72 141" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="288" cy="136" r="5" fill="#2d3142"/>
+      <path d="M288 131 A5 5 0 0 0 288 141" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <text x="180" y="132" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">A guest&#8217;s ticket</text>
+      <text x="180" y="154" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">QUESTION</text>
+
+      <!-- Off-menu ticket, dashed -->
+      <rect x="72" y="212" width="216" height="72" rx="4" fill="#2d3142"/>
+      <rect x="72" y="212" width="216" height="72" rx="4" fill="rgba(191,192,192,0.04)" stroke="#8e98ac" stroke-width="1" stroke-dasharray="5,4"/>
+      <circle cx="72" cy="248" r="5" fill="#2d3142"/>
+      <path d="M72 243 A5 5 0 0 1 72 253" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <circle cx="288" cy="248" r="5" fill="#2d3142"/>
+      <path d="M288 243 A5 5 0 0 0 288 253" fill="none" stroke="#8e98ac" stroke-width="1"/>
+      <text x="180" y="244" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The off-menu order</text>
+      <text x="180" y="266" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">UNANSWERABLE QUESTION</text>
+
+      <!-- Runner -->
+      <rect x="344" y="100" width="160" height="184" rx="6" fill="#2d3142"/>
+      <rect x="344" y="100" width="160" height="184" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <g transform="translate(405,130) scale(1.4)" fill="none" stroke="#f5f5f5" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="5" r="4" fill="#393e53"/>
+        <polyline points="14,10 11,22"/>
+        <polyline points="14,12 20,18 24,16"/>
+        <polyline points="14,12 8,16 6,14"/>
+        <polyline points="11,22 17,28 15,36"/>
+        <polyline points="11,22 6,30 2,29"/>
+      </g>
+      <text x="424" y="216" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The runner</text>
+      <text x="424" y="238" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">RETRIEVER</text>
+
+      <!-- Tray -->
+      <rect x="560" y="148" width="200" height="88" rx="6" fill="#2d3142"/>
+      <rect x="560" y="148" width="200" height="88" rx="6" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+      <text x="660" y="188" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The tray</text>
+      <text x="660" y="210" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">RETRIEVED PASSAGES</text>
+
+      <!-- Cook -->
+      <rect x="816" y="148" width="160" height="88" rx="6" fill="#2d3142"/>
+      <rect x="816" y="148" width="160" height="88" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <text x="896" y="188" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The cook</text>
+      <text x="896" y="210" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">GENERATOR</text>
+
+      <!-- Plate -->
+      <rect x="1032" y="148" width="184" height="88" rx="6" fill="#2d3142"/>
+      <rect x="1032" y="148" width="184" height="88" rx="6" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <text x="1124" y="188" fill="#f5f5f5" font-size="14" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">The plate</text>
+      <text x="1124" y="210" fill="#8e98ac" font-size="13" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.06em">THE ANSWER</text>
+
+      <!-- Note under the off-menu ticket -->
+      <text x="72" y="320" fill="#f5f5f5" font-size="16" font-style="italic" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif">The right plate for this one is &#8220;we don&#8217;t have that.&#8221;</text>
+
+      <!-- Sheet A -->
+      <rect x="72" y="348" width="548" height="192" rx="6" fill="#2d3142"/>
+      <rect x="72" y="348" width="548" height="192" rx="6" fill="rgba(240,138,89,0.14)" stroke="#f08a59" stroke-width="1.2"/>
+      <rect x="576" y="342" width="32" height="12" rx="3" fill="#f5f5f5"/>
+      <rect x="582" y="346" width="20" height="4" rx="2" fill="#2d3142"/>
+      <text x="96" y="382" fill="#bfc0c0" font-size="13" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">SHEET A &#183; RETRIEVAL</text>
+      <text x="96" y="406" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Grades the runner&#8217;s tray</text>
+      <line x1="96" y1="424" x2="596" y2="424" stroke="rgba(245,245,245,0.15)" stroke-width="0.8"/>
+      <line x1="96" y1="476" x2="596" y2="476" stroke="rgba(245,245,245,0.15)" stroke-width="0.8"/>
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#f5f5f5">
+        <text x="96" y="455">Did the right card arrive?</text>
+        <text x="96" y="507">How near the top?</text>
+      </g>
+      <rect x="420" y="437" width="176" height="26" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <rect x="420" y="489" width="176" height="26" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#f5f5f5" text-anchor="middle" letter-spacing="0.02em">
+        <text x="508" y="455">Recall@k</text>
+        <text x="508" y="507">MRR</text>
+      </g>
+
+      <!-- Sheet B -->
+      <rect x="660" y="348" width="556" height="244" rx="6" fill="#2d3142"/>
+      <rect x="660" y="348" width="556" height="244" rx="6" fill="rgba(240,138,89,0.14)" stroke="#f08a59" stroke-width="1.2"/>
+      <rect x="1108" y="342" width="32" height="12" rx="3" fill="#f5f5f5"/>
+      <rect x="1114" y="346" width="20" height="4" rx="2" fill="#2d3142"/>
+      <text x="684" y="382" fill="#bfc0c0" font-size="13" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">SHEET B &#183; GENERATION</text>
+      <text x="684" y="406" fill="#f5f5f5" font-size="16" font-weight="600" font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Grades the cook&#8217;s plate</text>
+      <line x1="684" y1="424" x2="1192" y2="424" stroke="rgba(245,245,245,0.15)" stroke-width="0.8"/>
+      <line x1="684" y1="476" x2="1192" y2="476" stroke="rgba(245,245,245,0.15)" stroke-width="0.8"/>
+      <line x1="684" y1="528" x2="1192" y2="528" stroke="rgba(245,245,245,0.15)" stroke-width="0.8"/>
+      <g font-family="'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#f5f5f5">
+        <text x="684" y="455">Made only of the tray?</text>
+        <text x="684" y="507">Matches the reference?</text>
+        <text x="684" y="559">Said no when the dish is not on the menu?</text>
+      </g>
+      <rect x="1016" y="437" width="176" height="26" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <rect x="1016" y="489" width="176" height="26" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <rect x="1016" y="541" width="176" height="26" rx="4" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#f5f5f5" text-anchor="middle" letter-spacing="0.02em">
+        <text x="1104" y="455">faithfulness</text>
+        <text x="1104" y="507">answer correctness</text>
+        <text x="1104" y="559">refusal accuracy</text>
+      </g>
+
+      <!-- Reading the sheets -->
+      <text x="72" y="644" fill="#bfc0c0" font-size="13" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">READING THE SHEETS TOGETHER</text>
+      <g font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-style="italic" font-size="18" fill="#f5f5f5">
+        <text x="72" y="676">Wrong plate, Sheet A failing: the runner missed.</text>
+        <text x="660" y="676">Sheet A passing, Sheet B failing: the cook misused a good tray.</text>
+      </g>
+
+      <!-- Legend -->
+      <line x1="72" y1="716" x2="1216" y2="716" stroke="rgba(245,245,245,0.12)" stroke-width="0.8"/>
+      <text x="72" y="740" fill="#bfc0c0" font-size="13" font-weight="500" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="72" y="760" width="16" height="12" rx="2" fill="rgba(191,192,192,0.10)" stroke="#8e98ac" stroke-width="1"/>
+      <rect x="320" y="760" width="16" height="12" rx="2" fill="rgba(191,192,192,0.04)" stroke="#8e98ac" stroke-width="1" stroke-dasharray="3,2"/>
+      <rect x="600" y="760" width="16" height="12" rx="2" fill="rgba(240,138,89,0.14)" stroke="#f08a59" stroke-width="1.2"/>
+      <g font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#bfc0c0" letter-spacing="0.06em">
+        <text x="96" y="771">TICKET = A QUESTION</text>
+        <text x="344" y="771">DASHED = NOT ON THE MENU</text>
+        <text x="624" y="771">SHEET = A SCORE SHEET</text>
+      </g>
+    </svg>

@@ -126,6 +126,14 @@ You cannot search a 500-page manual as one object, and you cannot paste it into 
 
 The tradeoff is real in both directions. Chunks too small lose the context that made them meaningful. Chunks too big dilute the meaning, so they match for the wrong reasons. One published evaluation, by the vector-database company Chroma, found that small 200-token chunks with no overlap matched OpenAI's file-search default (800 tokens with 400 of overlap) on recall (how much of the right material you found). They also beat it several times over on precision (how little junk came with it). That is the opposite of what most tutorials assume. It is one benchmark on five small corpora (a corpus is the whole pile of documents your system is allowed to answer from), which is exactly the point: **the number is a property of your documents, and the only way to know it is to build a small set of 50 to 100 real questions and measure.** Tuning it by argument is how everyone does it and it does not work.
 
+### Cut along the seams, then label every portion
+
+A good prep cook cuts along the joints of the roast, not through them, and writes the shelf-section name on every portion's label. Each table row gets written out as its own recipe card.
+
+**Split on the document's own structure first:** headings, then list and table boundaries. Only then cap the size inside each section. Next, write the section heading onto every chunk. A torn-off chunk that says "The limit is 30 days" could be about refunds, trials or retention. Under "Refund policy: enterprise plans" it is not ambiguous. This is a simpler cousin of the Contextual Retrieval idea in [section 2](#2-labeling-by-meaning-instead-of-by-words). A heading costs nothing to attach, and I make no claim about how much it helps, because Anthropic's numbers belong to the generated-context version, not this one.
+
+Keep a table whole, or turn each row into a sentence that repeats the column names, such as "Plan: Enterprise. Refund window: 30 days." That is common practice and I have no source measuring it, so test it on your own questions.
+
 ### Then label each passage by meaning, and put it on a shelf
 
 That is the next section. Here is the whole shape:
@@ -152,6 +160,8 @@ Two more of the same family, both extremely common, neither ever drawn on a diag
 **Deletion does not propagate.** Legal retracts a policy document and deletes it from the source system. Six weeks later your assistant is still quoting it to customers, with a citation. The delete reached the source. It never reached the passages, the lists of numbers made from them, or the index. The retracted document is not detectably different from valid evidence. It looks exactly like a good answer.
 
 **Nobody built a write path.** Ingestion was a notebook someone ran once. Then the documents start changing daily and the only operation that exists is "rebuild everything". That takes hours, costs real money, and serves a half-populated index the entire time it runs. This is decided on day one, by treating the index as a thing you build rather than as a view that has to be kept fresh.
+
+Both problems share one cheap fix: a fingerprint. Stamp every delivery box, restock only the boxes whose stamp changed, and throw out the portions whose box is gone in the same pass. In system terms, store a *content hash* (a short code computed from a document's text, which changes if the text changes) for each document. On every run, re-process only documents whose hash changed. The [LlamaIndex ingestion pipeline docs](https://docs.llamaindex.ai/en/stable/module_guides/loading/ingestion_pipeline/) describe this pattern, once a document store is attached: a map from document ID to hash, re-process on change, skip when unchanged. They do not describe deleting orphans. That part is my advice: remove the chunks of vanished documents in the same job, or they outlive their source.
 
 > **The words for it.** The top half is the *ingestion* or *indexing pipeline*, and it runs *offline*. The bottom half is the *query path* or *read path*, and it runs *online*. Getting text out of documents is *parsing* or *extraction*. Cutting it up is *chunking*; the deliberate repetition is *overlap*. The whole pattern is **RAG**, retrieval-augmented generation. The stale-document problem is *index drift*.
 
@@ -244,7 +254,11 @@ Worth knowing: this is also why adding a search index changes your results. The 
 
 How much slower is worth knowing, because it is often understated. Published throughput figures for common rerankers on a datacenter GPU (a V100) work out to roughly 10 milliseconds for the smallest distilled model over 100 passages. A base-sized one takes roughly 300 milliseconds. That is tens to hundreds of milliseconds, not "a few". On a CPU, or through a hosted API, it is more. This is a real budget line, and it is the step that gets quietly dropped under load.
 
+The shape of the funnel matters too. The runner grabs a wide armful, because grabbing is cheap and the only question at that point is whether the right card is somewhere in the pile. The sous-chef then cuts it down to the few cards that go on the ticket. So retrieve wide, rerank, keep few. A common starting point is around 50 candidates in and 3 to 5 out. Treat that as a place to begin, not as evidence. Defaults are not evidence, as section 1 said, and your own questions set the real numbers.
+
 **4. Paste them in.** The passages go above the question with instructions: answer from these and nothing else, cite which one, and if the answer is not here, say so.
+
+Order matters here. The cook skims the middle of a long tray. Put your strongest passage first or last. In [Lost in the Middle](https://arxiv.org/abs/2307.03172), Liu and colleagues found that models did best when the relevant text sat at the start or end of the input and worse when it sat in the middle. They tested 2023 models on multi-document question answering and key-value retrieval, so check it on yours.
 
 **5. Write the answer.** The cook cooks.
 
@@ -353,6 +367,10 @@ There is a failure hiding underneath all of this, and it is the most common one 
 
 The tempting fix is to refuse to answer below some similarity score. It works less well than you would hope. Those scores separate relevant from irrelevant passages far too weakly for a single global cutoff to be safe. **Which is why the grounding check in step 6 is doing more work than it appears to.** It is not only catching invented sentences. It is the mechanism by which the system is able to say "I don't know". That is a correct answer, and most of these systems are structurally incapable of giving it.
 
+A cutoff is still worth having, as a cheap first line and not as the check. Think of a gate at the runner's door. If the best card on the tray barely matches the ticket, the runner sends back "not on the menu" without waking the cook. Run it in code before the model is called, so a miss costs nothing. Set it on whichever score actually separates answerable from unanswerable questions in your own labeled set (see below), and keep the grounding check behind it, because the gate will let some bad trays through.
+
+One more check needs no model at all. If the answer cites passage 4 and only 3 passages were sent, that is a failure you can catch mechanically. The taster ticks every ticket number on the plate against what the runner actually brought.
+
 > **The words for it.** Checking the answer is supported by the retrieved text is *faithfulness* or *groundedness*. In the most common open-source framework, faithfulness has a precise definition: the number of claims in the answer supported by the retrieved context, divided by the total number of claims. Whether retrieval found the right passages is *context precision* and *context recall*. Note that context precision is a **ranking** metric (did the good passages come back near the top) and not the share of retrieved passages that were relevant, which is how it is usually described. Using one model to score another is *LLM-as-a-judge*. Declining to answer is *abstention*.
 
 ### About the numbers you will see
@@ -362,6 +380,25 @@ Articles on this print target figures: faithfulness of 0.88, retrieval precision
 I went looking for a published standard that establishes them. There is not one, from any standards body or any of the frameworks that define these metrics. There could not be, because what counts as good depends on your documents, your questions, and what it costs you to be wrong. A legal research tool and a recipe finder should not share a bar. For scale, here is the nearest real published measurement I could find, a controlled biomedical study. It reports *contextual precision* (a different framework's metric, not the one just defined) between 0.671 and 0.852 across five retrieval strategies. Its best result sits *below* the 0.90 those articles present as a target.
 
 **Measure yours. Do not adopt a screenshot as a goal.** And when you report a number, report the judge model, the sample size, and the date, or it is not a measurement.
+
+### Grade the runner and the cook separately
+
+A restaurant that only counts complaints cannot tell whether the runner fetched the wrong card or the cook misread the right one. So keep two score sheets, one for each.
+
+One end-to-end score says an answer was bad. It cannot say which half failed. Build a small labeled set instead: real questions, each with the IDs of the passages that hold the answer and a short reference answer. This is the same 50 to 100 questions from section 1. Include some your documents cannot answer, where the right response is "not in the documents".
+
+**Score retrieval alone.** Did a correct passage show up in the top k, and how high did the first one rank?
+
+**Score generation alone.** Is every claim supported by the passages sent (faithfulness)? Does the answer match the reference? Does the system decline when it should? If a model grades these for you, check its grades against a human's on a sample from your own domain first, as the judge studies above advise.
+
+Run both sheets after every change to chunking, embeddings, reranker or prompt, so you know which change moved which number.
+
+> **The words for it.** *Recall@k* is the share of a question's correct passages that land in the top k results, averaged over the questions; with one correct passage per question, it simply asks whether that passage made the top k. It is the retrieval recall of section 1, measured at a cutoff. *MRR*, mean reciprocal rank, gives each question 1 divided by the rank of the first correct passage, or 0 if none appears, then averages; it is defined in the [TREC-8 question answering track report](https://trec.nist.gov/pubs/trec8/papers/qa_report.pdf). A labeled set like this is often called a *golden set*. *Refusal accuracy* is how often the system correctly declines.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/png/two-score-sheets-dark.png">
+  <img alt="A kitchen scene read left to right. A guest's ticket, and below it a dashed off-menu ticket for a question the kitchen cannot answer, both go to the runner. The runner brings a tray of retrieved passages, the cook turns the tray into a plate, and the plate is the answer. Two score sheets are clipped to the flow. Sheet A hangs from the tray and grades retrieval: did the right card arrive, scored as recall at k, and how near the top it sat, scored as mean reciprocal rank. Sheet B hangs from the plate and grades generation: was the plate made only of the tray, scored as faithfulness; does it match the reference, scored as answer correctness; and did the cook say no when the dish was not on the menu, scored as refusal accuracy. A note reads that a wrong plate with Sheet A failing means the runner missed, and Sheet A passing with Sheet B failing means the cook misused a good tray." src="diagrams/png/two-score-sheets.png">
+</picture>
 
 ### The general form
 
@@ -441,6 +478,8 @@ Here is each one with the specific thing that breaks when it is missing. Not a c
 
 **Making it safe and reliable.** A dependency starts rate-limiting you. The retry loop has no backoff, which means it does not wait longer between tries, so it piles more load on the dependency. The whole page dies instead of degrading. Meanwhile the health check stays green, because it pings a static endpoint instead of asking a real question.
 
+Plan the degraded path inside retrieval too. If the sous-chef is swamped, the tray goes out in the order the two shelves already agreed on. If the taste shelf is locked, the runner works from the name labels alone. In system terms: when the reranker times out, serve the fused order from the earlier step. When the meaning-based index is down, keyword search alone still returns something. Then label every answer that went out on a degraded path. This is design advice, not a measured result.
+
 **Operating it in the real world.** Fine at ten users. At ten thousand, the thing that falls over first is never what you expected, and you hear it from a customer, not a dashboard. Your measured latency was taken on an idle machine, where it is service time. Under load it is mostly queue wait, and the two are unrelated. Then the bill arrives at many times the forecast. It cannot be attributed to any feature, because nobody recorded cost per request against anything traceable.
 
 Operating it also brings a trap that looks like a gain. A *cache* keeps a saved copy of an answer, or of the passages retrieved for a question, so the next person who asks the same thing skips the work. Picture sauce held under the heat lamp. It goes out fast. But it keeps going out after the recipe changes, and after an ingredient is recalled. The saved copy does not know the source moved on. It stays in use until it expires or someone clears it.
@@ -485,6 +524,20 @@ Most of it is obvious once drawn. Two columns are not, and they are the two that
 
 > **The words for it.** The join table between queries and chunks is your *retrieval log*, and it is the single most useful thing you can keep. The character range is a *span* or *offset*. Together they give you *traceability*: the ability to reconstruct, after the fact, exactly which inputs produced a given output.
 
+Each morning the head chef reads the order book, and every plate that came back becomes a practice order. For that to work, record this for every request:
+
+- **The question.** The query as typed and as rewritten.
+- **The tray.** Passage IDs, with retrieval scores and reranker scores.
+- **The ticket.** The final prompt, exactly as sent.
+- **The plate.** The answer, and the time each stage took.
+
+Then read four signals regularly. A low top reranker score usually points to a content gap: the answer was never written down. A jump in refusals often means a broken indexing job or a removed document. Citation failures mean no citations, or citations to passages that were never sent. A user's thumbs-down, tied to the logged trace, shows which half failed. These four are my opinion, not a standard. Every real failure becomes a new question in the labeled set from section 5.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/png/order-book-loop-dark.png">
+  <img alt="A loop around a kitchen. Guests' tickets enter the kitchen, where the runner fetches, the sous-chef re-checks and the cook writes the plate. Every request is written in the order book, which keeps the ticket, the rewritten ticket, the cards and their scores, the sous-chef's scores, the final prompt, the plate and the time spent at each station. Each morning someone reads the book for four flags: the best card scored poorly, a content gap; a run of we don't have that, which often means the indexing job broke; a plate that cites a card never on the tray, a citation failure; and a guest sending the plate back, a thumbs-down. The flagged plates are labeled and become practice orders, a test set, which feed back into the kitchen as the check that runs before every change." src="diagrams/png/order-book-loop.png">
+</picture>
+
 A *schema* is the list of tables you keep and what goes in each column. **This one is not for the model. It is for you, on the day someone asks why it said that.**
 
 ---
@@ -523,6 +576,14 @@ The honest decision rule is short:
 | Not written down anywhere | Nothing. Go and write it down first |
 
 That last row is not a joke. In my experience, a meaningful share of retrieval projects are attempts to extract knowledge that was never recorded. No architecture recovers it.
+
+A forty-second animated recap follows, covering the reliability habits from sections 1 to 8: grab wide, keep few, gate, cite, measure.
+
+<a href="media/rag-reliability.mp4">
+  <img alt="Animated recap, about forty seconds, no sound. Tickets arrive at a kitchen; the runner grabs a wide armful of cards from two shelves; the sous-chef keeps the few that answer the ticket; a ticket with no good card is turned away at the door as not on the menu; the cook plates with numbered cards and the taster checks each one was on the tray; two score sheets grade the tray and the plate separately; a returned plate drops into the order book and comes back as a practice order; on a bad night the kitchen falls back to the merged order or the name labels alone." src="media/rag-reliability.gif" width="100%">
+</a>
+
+<sub>Animated preview. [Watch the full-quality MP4](media/rag-reliability.mp4).</sub>
 
 ---
 
@@ -739,10 +800,12 @@ Grouped by what each one actually supports, so you can check the specific claim 
 - OpenAI, [Embeddings guide](https://developers.openai.com/api/docs/guides/embeddings), and the [all-MiniLM-L6-v2 model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). The 1,536, 3,072 and 384 defaults in section 2.
 - [pgvector](https://github.com/pgvector/pgvector). That vectors can live in Postgres alongside the rest of your data, the six distance operators, and the warning that results change once an approximate index is added.
 - [FAISS index documentation](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes). The IVF family, and cosine handled by normalizing first.
+- LlamaIndex, [Ingestion Pipeline](https://docs.llamaindex.ai/en/stable/module_guides/loading/ingestion_pipeline/) documentation, Document Management. The document-hash approach in section 1: re-process changed documents, skip unchanged ones. The page does not describe deleting chunks of removed documents; that part is the author's advice.
 - [Sentence-Transformers cross-encoder documentation](https://sbert.net/docs/pretrained-models/ce-msmarco.html). The throughput table behind the reranking latency figures in section 3, measured on a V100 GPU.
 - Chroma, [Evaluating Chunking Strategies for Retrieval](https://www.trychroma.com/research/evaluating-chunking). One measured comparison of chunk sizes on five small corpora, including the result that OpenAI's 800-token, 400-overlap default scored slightly below average on recall and lowest on every other metric.
 - Gao et al., [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/abs/2312.10997). Chunking practice, hierarchical indexing, and the field's own vocabulary.
 - Barnett et al., [Seven Failure Points When Engineering a RAG System](https://arxiv.org/abs/2401.05856). Missing content answered confidently, which is failure point one.
+- Liu et al., [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) (TACL 2024). Why passage order matters in section 3. Measured on 2023 models in multi-document question answering and key-value retrieval.
 
 **Evaluation and verification**
 
@@ -751,6 +814,7 @@ Grouped by what each one actually supports, so you can check the specific claim 
 - Panickssery, Bowman & Feng, [LLM Evaluators Recognize and Favor Their Own Generations](https://arxiv.org/abs/2404.13076) (NeurIPS 2024). Self-preference.
 - Huang et al., [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798) (ICLR 2024). The numbers behind "the taster cannot be the cook".
 - Es et al., [RAGAS: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/abs/2309.15217), and the [metric definitions](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/). Where "faithfulness" and "context precision" actually come from, and what context precision really measures.
+- Voorhees, [The TREC-8 Question Answering Track Report](https://trec.nist.gov/pubs/trec8/papers/qa_report.pdf) (NIST, 1999). The mean reciprocal rank definition in section 5. TREC-8 scored only the first five responses.
 - Weyuker, [On Testing Non-Testable Programs](https://academic.oup.com/comjnl/article/25/4/465/366384) (The Computer Journal, 1982). The oracle problem, named forty years before anyone needed it for this.
 - DeMillo, Lipton & Sayward, Hints on Test Data Selection (IEEE Computer, 1978), and Just et al., [Are Mutants a Valid Substitute for Real Faults?](https://dl.acm.org/doi/10.1145/2635868.2635929) (FSE 2014). Mutation testing, and how well it stands in for real defects.
 - Dean & Barroso, [The Tail at Scale](https://www.barroso.org/publications/TheTailAtScale.pdf) (CACM, 2013). The fan-out arithmetic behind the p95 warning in section 3.
@@ -784,10 +848,11 @@ README.md                 this article
 demo/tiny_rag.py          the runnable demo: six stages, three deliberate failures
 demo/test_tiny_rag.py     32 tests, including one that asserts a failure
 demo/real_rag.py          the same six steps with real components
-diagrams/*.html           the twelve diagrams, light and dark, self-contained
+diagrams/*.html           the fourteen diagrams, light and dark, self-contained
 diagrams/svg/             scalable exports
 diagrams/png/             what the README embeds
 tools/export_diagrams.py  regenerates svg/ and png/ from the HTML
+media/                    the animated recap: MP4, GIF preview and poster
 ```
 
 ## Corrections
@@ -795,6 +860,7 @@ tools/export_diagrams.py  regenerates svg/ and png/ from the HTML
 If something here is wrong, [open an issue](https://github.com/wilsonwu-ai/the-model-is-the-easy-half/issues). Corrections with a primary source attached will be applied and credited.
 
 - **29 September 2026, pre-submission re-check.** Every disputed figure was re-read against the raw source page. Fixed: the chunking defaults and the Chroma comparison in section 1, the embedding dimensions in section 2, the MT-Bench position-bias sentence in section 5, and the Andrew Ng attribution in section 7, which had called paraphrased headings verbatim. Tightened wording in sections 3, 4, 6, 9 and 10.
+- **16 October 2026, reliability additions.** Section 1 gained a subsection on cutting passages along document structure, and a paragraph on keeping the index in step with its documents. Section 3 gained notes on the shape of the retrieval funnel and on passage order. Section 5 gained a cheap-cutoff and citation check, and a subsection on scoring retrieval and generation separately. Section 7 gained a paragraph on degraded paths. Section 8 gained what to log and which signals to read. Sources gained three entries. Prompted by [a post on reliable RAG by @techwith_ram](https://x.com/techwith_ram/status/2110937787952443566); every claim taken from it was checked against a primary source or labeled as opinion.
 
 ## License
 
